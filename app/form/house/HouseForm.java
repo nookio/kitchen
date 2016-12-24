@@ -16,11 +16,11 @@ public class HouseForm extends BaseForm{
     private Integer houseId;
 
     //经营状态
-    private Integer business; //经营业态
+    private String business; //经营业态
 
-    private String businessName; //经营业态
+    private String businessName; //当前品牌
 
-    private String businessStatus; //经营业态
+    private String businessStatus; //当前业态
 
     //租约相关
     private Date nextPayRentDate; //下次交租日
@@ -38,11 +38,11 @@ public class HouseForm extends BaseForm{
 
     private Integer status;
 
-    public Integer getBusiness() {
+    public String getBusiness() {
         return business;
     }
 
-    public void setBusiness(Integer business) {
+    public void setBusiness(String business) {
         this.business = business;
     }
 

@@ -5,6 +5,7 @@ import com.avaje.ebean.annotation.UpdatedTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -18,12 +19,6 @@ import java.util.Date;
 public class Contact extends Base {
 
     public final static Finder<Integer, Contact> finder = new Finder<Integer, Contact>(Contact.class);
-
-
-    private Integer OWNER = 1;
-    private Integer AGANCY = 2;
-    private Integer BUSINESS = 3;
-    private Integer ESTATE = 4;
 
     @Column
     private String name;

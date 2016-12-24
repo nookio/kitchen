@@ -185,13 +185,26 @@ label {
     right: 9%;
 }
 
-.pingmi-li {
+.firse {
     margin-left: 20px;
-    text-align: center;
+    text-align: right;
+    width: 25%;
+}
+
+.testRight{
+    text-align: right;
+}
+
+.pingmi-li {
+    margin-left: 10%;
+    text-align: right;
+    width: 20%;
 }
 
 .money-li, .message-li {
+    margin-right: 5%;
     text-align: right;
+    width: 20%;
 }
 
 .show-div {

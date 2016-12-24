@@ -6,8 +6,6 @@ import com.avaje.ebean.annotation.UpdatedTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import java.util.Date;
 
 /**
@@ -26,19 +24,19 @@ public class Credential extends Base {
     private Integer houseId;
 
     @Column
-    private Integer businessLicence; //营业执照
+    private Integer businessLicence = 0; //营业执照
 
     @Column
-    private Integer wholeBussiness; //是否大照
+    private Integer wholeBussiness = 0; //是否大照
 
     @Column
-    private Integer foodAndBeverageBusinessLicense;  //餐饮经营许可证
+    private Integer foodAndBeverageBusinessLicense = 0;  //餐饮经营许可证
 
     @Column
-    private Integer fireSafetyPermition; //消防许可证
+    private Integer fireSafetyPermition = 0; //消防许可证
 
     @Column
-    private Integer invoice; //发票
+    private Integer invoice = 0; //发票
 
 //    @OneToOne
 //    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)

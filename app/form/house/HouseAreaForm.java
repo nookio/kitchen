@@ -19,11 +19,17 @@ public class HouseAreaForm extends BaseForm{
 
     private String owner;
 
+    private String contactMobile;
+
+    private String contact;
+
+    private Integer contactType;
+
     private Integer propertyRightType;
 
-    private Integer floor;
+    private String floor;
 
-    private Integer maxFloor;
+    private String maxFloor;
 
     private Long areas;
 
@@ -69,19 +75,19 @@ public class HouseAreaForm extends BaseForm{
         this.propertyRightType = propertyRightType;
     }
 
-    public Integer getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(Integer floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 
-    public Integer getMaxFloor() {
+    public String getMaxFloor() {
         return maxFloor;
     }
 
-    public void setMaxFloor(Integer maxFloor) {
+    public void setMaxFloor(String maxFloor) {
         this.maxFloor = maxFloor;
     }
 
@@ -139,5 +145,29 @@ public class HouseAreaForm extends BaseForm{
 
     public void setHouseId(Integer houseId) {
         this.houseId = houseId;
+    }
+
+    public String getContactMobile() {
+        return contactMobile;
+    }
+
+    public void setContactMobile(String contactMobile) {
+        this.contactMobile = contactMobile;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public Integer getContactType() {
+        return contactType;
+    }
+
+    public void setContactType(Integer contactType) {
+        this.contactType = contactType;
     }
 }

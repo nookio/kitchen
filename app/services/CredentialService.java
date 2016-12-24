@@ -17,13 +17,15 @@ public class CredentialService {
 
     public Credential byHouseId(Integer houseId) {
         PagedList<Credential> credentials = Credential.finder.where()
-                .eq("houseId", houseId).eq("status", Credential.NORMAL).findPagedList();
+                .eq("houseId", houseId)
+//                .eq("status", Credential.NORMAL)
+                .findPagedList(0, 10);
         if (credentials.getTotalRowCount() >1 ){
             logger.error("Credential出现重复数据{}",houseId);
             return credentials.getList().get(1);
         }
         if (credentials.getTotalRowCount() == 1) {
-            return credentials.getList().get(1);
+            return credentials.getList().get(0);
         }
         else return new Credential();
     }

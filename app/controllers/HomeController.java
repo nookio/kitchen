@@ -1,17 +1,29 @@
 package controllers;
 
 import com.google.inject.Inject;
+import helper.Response;
+import models.Contact;
+import models.Credential;
 import models.House;
 import models.address.Area;
+import models.address.City;
+import models.address.District;
+import models.address.Province;
 import play.mvc.*;
 
+import services.CredentialService;
 import services.HouseService;
+import services.PictureService;
 import views.html.*;
+import views.html.house.houseAdd;
 import views.html.house.houseShow;
 import views.html.house.houses;
 import views.html.staff.login;
+import vo.HouseVo;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -22,9 +34,24 @@ public class HomeController extends Controller {
     @Inject
     private HouseService houseService;
 
+    @Inject
+    private CredentialService credentialService;
+
+    @Inject
+    PictureService pictureService;
+
+
     public Result house(Integer id) {
-        House house = houseService.get(id);
-        return ok(houseShow.apply(house));
+        House house =  houseService.get(id);
+        Credential credential = credentialService.byHouseId(house.getId());
+        house.setCredential(credential);
+        house.setPictures(pictureService.byHouseId(house.getId()));
+        Map<Integer, Province> provinces = Province.finder.all().stream().collect(Collectors.toMap(Province::getCode, c->c));
+        Map<Integer, City> citys = City.finder.all().stream().collect(Collectors.toMap(City::getCode, c->c));
+        Map<Integer, Area> areas = Area.finder.all().stream().collect(Collectors.toMap(Area::getCode, a->a));
+        Map<Integer, District> districts = District.finder.all().stream().collect(Collectors.toMap(District::getCode, c->c));
+        return ok(houseShow.apply(HouseVo.transformFromHouse(house,
+                Contact.finder.byId(house.getContactId()), provinces,citys, areas, districts)));
     }
 
     public Result jsp() {
@@ -55,7 +82,7 @@ public class HomeController extends Controller {
     }
 
     public Result addHouse() {
-        return Results.TODO;
+        return ok(houseAdd.apply());
     }
 
     public Result header() {

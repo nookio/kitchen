@@ -1,8 +1,6 @@
 package models;
 
 import com.avaje.ebean.Model;
-
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -31,4 +29,6 @@ public abstract class Base extends Model {
     public void setId(Integer id) {
         this.id = id;
     }
+
+
 }

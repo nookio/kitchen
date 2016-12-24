@@ -7,7 +7,7 @@ function search(array) {
         url: "/house/query",
         data: arrayToJson(array),
         type: "POST",
-        contentType: 'application/json',
+        contentType: 'application/json;charset=utf-8',
         dataType: "json",
         success: function (data) {
             checkResult(data);
@@ -66,10 +66,10 @@ function addPage(json) {
 function parseObject(house) {
     return (   "<li>" +
         "<p>" + house.code + "<span class=\"small-info\">" + "        分钟前更新" + "</span></p>" +
-        "<p>" + house.areaCode + "-" + house.districtCode + "-" + house.address + house.floor + " 层" +
+        "<p>" + house.cityName + "-" + house.areaName + "-" + house.address + house.floor + " 层" +
         "<a href=\"#\">地图</a></p>" +
         "<p><a href=\"#\">全景地图</a></p>" +
-        "<p>" + house.houseType + " 铺原等级：" + house.houseLevel + " 带看" + "n" + "次" + "</p>" +
+        "<p>" + house.houseTypeName + " 铺原等级：" + house.houseLevelName + " 带看" + house.showTimes + "次" + "</p>" +
         "</li>" +
         "<li>" +
         "<p>" + house.areas + "平米" + "</p>" +
@@ -83,15 +83,15 @@ function parseObject(house) {
         "<li class=\"money-li\">" +
         "<p></p>" +
         "<p>当前品牌：" + house.businessName + "</p>" +
-        "<p>租售状态：" + house.rentStatus + "</p>" +
+        "<p>租售状态：" + house.rentStatusName + "</p>" +
         "<p>当前业态：" + house.businessStatus + "</p>" +
         "</li>" +
         "<li class=\"message-li\">" +
         "<p><a href=/house/edit/" + house.id +">" + "编辑" + "</a> " +
     "       <a href=/house/" + house.id +">" + "查看详情" + "</a></p>" +
-        "<p>" + house.owner + "  " + house.ownerType + "</p>" +
+        "<p>" + house.owner + "  " + house.ownerTypeName + "</p>" +
         "<p>" + house.ownerMobile + "</p>" +
-        "<p>来源类型：" + house.houseSource + "</p>" +
+        "<p>来源类型：" + house.sourceTypeName + "</p>" +
         "</li>"
     );
 }

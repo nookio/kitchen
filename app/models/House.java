@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @Created_With kitchen
@@ -79,26 +80,34 @@ public class House extends Base {
     @Column
     private Integer houseType; //商铺类型
 
+    //产权人类型
     @Column
     private Integer ownerType;
 
+    //产权人
     @Column
     private String owner;
 
     @Column
-    private String ownerMobile;
+    private Integer propertyRightType = 1;
 
     @Column
-    private Integer propertyRightType;
+    private String floor; //第几层
 
     @Column
-    private Integer floor; //第几层
+    private Long height;
 
     @Column
-    private Integer maxFloor; //一共几层
+    private String maxFloor; //一共几层
 
     @Column
     private Long areas; //建筑面积
+
+    @Column
+    private Long buildAreas; //建筑面积
+
+    @Column
+    private Long useAreas; //建筑面积
 
     @Column
     private Long effien; //得房率
@@ -118,7 +127,10 @@ public class House extends Base {
 
     //经营状态
     @Column
-    private Integer business; //经营业态
+    private String business; //经营业态
+
+    @Column
+    private Integer operateStatus; //经营业态 营业中/无业
 
     @Column
     private String businessName; //经营品牌
@@ -144,7 +156,7 @@ public class House extends Base {
     private String chummageIncreaseRule; //租金递增规则
 
     @Column
-    private String transferCost; //转让费
+    private Long transferCost; //转让费
 
     @Column
     private String deposit; //压几个月
@@ -159,7 +171,10 @@ public class House extends Base {
     private Long waterRate; //水费
 
     @Column
-    private Long gasRate; //电费
+    private Long gasRate; //天然气费
+
+    @Column
+    private Long elasRate; //电费
 
     @Column
     private Long shopSignRate; //店招费用 /年
@@ -190,12 +205,19 @@ public class House extends Base {
     @Column
     private String proposed;
 
+    @Column
+    private Long perPersonMin; //建议人均 kaishi
+
+    @Column
+    private Long perPersonMax; //建议人均 jieshu
+
+
     //其它
     @Column
     private String describtion;
 
     @Column
-    private Integer houseSource;
+    private Integer houseSource; //来源类型
 
     @Column
     private String sourceName;
@@ -229,13 +251,13 @@ public class House extends Base {
     private Integer downPipeDiameter; //下水管直径
 
     @Column
-    private Integer gas; //下水管直径
+    private Integer gas; //天然气
 
     @Column
     private Integer gasCylinders; //煤气罐
 
     @Column
-    private Integer fire; //煤气罐
+    private Integer fire; //明火
 
     @Column
     private Integer duct; //排烟道
@@ -265,9 +287,12 @@ public class House extends Base {
     @UpdatedTimestamp
     private Date updated_date;
 
-    @Column()
+    @Column
     @CreatedTimestamp
     private Date created_date;
+
+    @Column
+    private Integer contactId;
 
 //    @OneToOne(mappedBy = "houseShow")
     @Transient
@@ -276,10 +301,12 @@ public class House extends Base {
     public List<Picture> pictures = new ArrayList<>();
 
     public House() {
+        Date now = new Date();
+        code = "S16" + now.getMonth() +now.getDate() + new Random(100000).nextInt();
         status = INIT;
     }
 
-    public void setFacility(HouseFacilityForm form) {
+    public void FsetFacility(HouseFacilityForm form) {
         this.shopSignSizeOne = null == form.getShopSignSizeOne() ? 0l :form.getShopSignSizeOne();
         this.shopSignSizeTwo = null == form.getShopSignSizeTwo() ? 0l : form.getShopSignSizeTwo();
         this.power = null == form.getPower() ? 1 : form.getPower();
@@ -301,8 +328,7 @@ public class House extends Base {
         this.outWard = null == form.getOutWard() ? 0 : form.getOutWard();
     }
 
-
-    public void setPosition(HousePositionForm position) {
+    public void FsetPosition(HousePositionForm position) {
         this.provinceCode = null == position.getProvinceCode() ? 0 : position.getProvinceCode();
         this.cityCode = null == position.getCityCode() ? 0 : position.getCityCode();
         this.areaCode = null == position.getAreaCode() ? 0 : position.getAreaCode();
@@ -322,8 +348,8 @@ public class House extends Base {
         this.ownerType = null == area.getOwnerType() ? 0 : area.getOwnerType();
         this.owner = null == area.getOwner() ? "" : area.getOwner();
         this.propertyRightType = null == area.getPropertyRightType() ? 0 : area.getPropertyRightType();
-        this.floor = null == area.getFloor() ? 0 : area.getFloor();
-        this.maxFloor = null == area.getMaxFloor() ? 0 : area.getMaxFloor();
+        this.floor = null == area.getFloor() ? "0" : area.getFloor();
+        this.maxFloor = null == area.getMaxFloor() ? "0" : area.getMaxFloor();
         this.areas = null == area.getAreas() ? 0 : area.getAreas();
         this.effien = null == area.getEffien() ? 0 : area.getEffien();
         this.showLength = null == area.getShowLength() ? 0 : area.getShowLength();
@@ -338,7 +364,7 @@ public class House extends Base {
         this.chummageYear = null == cost.getChummageYear() ? 0l :cost.getChummageYear();
         this.chummageIncrease = null == cost.getChummageIncrease() ? 0 :cost.getChummageIncrease();
         this.chummageIncreaseRule = null == cost.getChummageIncreaseRule() ? "" :cost.getChummageIncreaseRule();
-        this.transferCost = null == cost.getTransferCost() ? "" :cost.getTransferCost();
+        this.transferCost = null == cost.getTransferCost() ? 0l:cost.getTransferCost();
         this.deposit = null == cost.getDeposit() ? "" :cost.getDeposit();
         this.payMoney = null == cost.getPayMoney() ? "" :cost.getPayMoney();
         this.propertyFee = null == cost.getPropertyFee() ? 0l :cost.getPropertyFee();
@@ -361,7 +387,7 @@ public class House extends Base {
     }
 
     public void setHouse(HouseForm house){
-        this.business = null == house.getBusiness() ? 0 : house.getBusiness();
+        this.business = null == house.getBusiness() ? "" : house.getBusiness();
         this.businessName = null == house.getBusinessName() ? "" : house.getBusinessName();
         this.businessStatus = null == house.getBusinessStatus() ? "" : house.getBusinessStatus();
         this.nextPayRentDate = null == house.getNextPayRentDate() ? new Date() : house.getNextPayRentDate();
@@ -528,19 +554,19 @@ public class House extends Base {
         this.propertyRightType = propertyRightType;
     }
 
-    public Integer getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(Integer floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 
-    public Integer getMaxFloor() {
+    public String getMaxFloor() {
         return maxFloor;
     }
 
-    public void setMaxFloor(Integer maxFloor) {
+    public void setMaxFloor(String maxFloor) {
         this.maxFloor = maxFloor;
     }
 
@@ -592,11 +618,11 @@ public class House extends Base {
         this.decoration = decoration;
     }
 
-    public Integer getBusiness() {
+    public String getBusiness() {
         return business;
     }
 
-    public void setBusiness(Integer business) {
+    public void setBusiness(String business) {
         this.business = business;
     }
 
@@ -648,11 +674,11 @@ public class House extends Base {
         this.chummageIncreaseRule = chummageIncreaseRule;
     }
 
-    public String getTransferCost() {
+    public Long getTransferCost() {
         return transferCost;
     }
 
-    public void setTransferCost(String transferCost) {
+    public void setTransferCost(Long transferCost) {
         this.transferCost = transferCost;
     }
 
@@ -982,15 +1008,7 @@ public class House extends Base {
 
     public void setPictures(List<Picture> pictures) {
         if (null == pictures) return;
-        this.pictures = pictures;
-    }
-
-    public String getOwnerMobile() {
-        return ownerMobile;
-    }
-
-    public void setOwnerMobile(String ownerMobile) {
-        this.ownerMobile = ownerMobile;
+        this.pictures.addAll(pictures);
     }
 
     public void setBusinessName(String businessName) {
@@ -999,5 +1017,69 @@ public class House extends Base {
 
     public void setBusinessStatus(String businessStatus) {
         this.businessStatus = businessStatus;
+    }
+
+    public Long getBuildAreas() {
+        return buildAreas;
+    }
+
+    public void setBuildAreas(Long buildAreas) {
+        this.buildAreas = buildAreas;
+    }
+
+    public Long getHeight() {
+        return height;
+    }
+
+    public void setHeight(Long height) {
+        this.height = height;
+    }
+
+    public Long getElasRate() {
+        return elasRate;
+    }
+
+    public void setElasRate(Long elasRate) {
+        this.elasRate = elasRate;
+    }
+
+    public Long getPerPersonMin() {
+        return perPersonMin;
+    }
+
+    public void setPerPersonMin(Long perPersonMin) {
+        this.perPersonMin = perPersonMin;
+    }
+
+    public Long getPerPersonMax() {
+        return perPersonMax;
+    }
+
+    public void setPerPersonMax(Long perPersonMax) {
+        this.perPersonMax = perPersonMax;
+    }
+
+    public Integer getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(Integer contactId) {
+        this.contactId = contactId;
+    }
+
+    public Long getUseAreas() {
+        return useAreas;
+    }
+
+    public void setUseAreas(Long useAreas) {
+        this.useAreas = useAreas;
+    }
+
+    public Integer getOperateStatus() {
+        return operateStatus;
+    }
+
+    public void setOperateStatus(Integer operateStatus) {
+        this.operateStatus = operateStatus;
     }
 }

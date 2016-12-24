@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="@routes.Assets.versioned("images/favicon.png")">
+
+        <title>百米厨房</title>
+
+        <link href="@routes.Assets.versioned("stylesheets/boot/offcanvas.css")" rel="stylesheet">
+        <link href="@routes.Assets.versioned("stylesheets/boot/bootstrap-theme.min.css")" rel="stylesheet">
+        <link href="@routes.Assets.versioned("stylesheets/boot/bootstrap.min.css")" rel="stylesheet">
+        <link href="@routes.Assets.versioned("stylesheets/list/houseAdd.css")" rel="stylesheet">
+
+        <script src="@routes.Assets.versioned("javascripts/boot/html5shiv.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/save/save.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/boot/respond.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/boot/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/boot/offcanvas.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquerysession.js")" type="text/javascript"></script>
+        <script >
+            function checkToken() {
+                if (null == $.session.get('user')) {
+                    location.href = "/login";
+                } else {
+                }
+            }
+            window.onload = checkToken;
+
+            $(document).ready(function () {
+                $("#saveButton").click(function () {
+                    save(getData());
+                })
+            });
+
+            function getData() {
+                var data = new Object();
+                data.businessLicence = $("#businessLicence").val();
+                data.wholeBussiness = $("input[type=checkbox][name=dazhao]:checked").length;
+                data.foodAndBeverageBusinessLicense = $("#foodAndBeverageBusinessLicense").val();
+                data.foodAndBeverageBusinessLicense = $("#foodAndBeverageBusinessLicense").val();
+                data.fireSafetyPermition = $("#fireSafetyPermition").val();
+                data.invoice = $("#invoice").val();
+                //上面的是资质信息
+                //虾面是联系人信息
+                data.contactName = $("#contactName").val();
+                data.contactMobile = $("#contactMobile").val();
+                data.contactType = $("input[type=radio][name=contactType]:checked").val();
+                //租售信息
+                data.rentType = $("#rentType").val();
+                data.rentBusinessType = $("#rentBusinessType").val();
+                data.rentStatus = $("#rentStatus").val();
+                //虾面是地理信息
+                data.address = $("#address").val();
+                //当前状态
+                data.operateStatus = $("input[type=radio][name=operateStatus]:checked").val();
+                data.businessName = $("#dangqianpinpai").val();
+                data.businessStatus = $("#businessStatus").val();
+
+                //建筑信息 //这个地方暂时有问题
+                data.houseType = $("input[type=radio][name=houseType]:checked").val();
+                data.owner = $("#owner").val();
+                data.propertyRightType = $("#propertyRightType").val();
+                data.floor = $("#floor").val();
+                data.areas = $("#mianji").val();
+                data.buildAreas = $("#buildAreas").val();
+                data.useAreas = $("#useAreas").val();
+                data.showLength = $("#showLength").val();
+                data.height = $("#height").val();
+                data.shade = $("#shade").val();
+                data.decoration = $("input[type=radio][name=decoration]:checked").val();
+                //设施相关
+                data.shopSignSizeOne = $("#shopSignSizeOne").val();
+                data.shopSignSizeTwo = $("#shopSignSizeTwo").val();
+                data.power = $("input[type=checkbox][name=power]:checked").length;
+                data.capacityIncrease = $("input[type=checkbox][name=capacityIncrease]:checked").length;
+                data.upPipe = $("input[type=checkbox][name=upPipe]:checked").length;
+                data.downPipe = $("input[type=checkbox][name=downPipe]:checked").length;
+                data.blowOff = $("input[type=checkbox][name=blowOff]:checked").length;
+                data.greaseTrap = $("input[type=checkbox][name=greaseTrap]:checked").length;
+                data.fire = $("input[type=checkbox][name=fire]:checked").length;
+                data.gas = $("input[type=checkbox][name=gas]:checked").length;
+                data.gasCylinders = $("input[type=checkbox][name=gasCylinders]:checked").length;
+                data.duct = $("input[type=checkbox][name=duct]:checked").length;
+                data.oilFume = $("input[type=checkbox][name=oilFume]:checked").length;
+                data.outWard = $("input[type=checkbox][name=outWard]:checked").length;
+                data.capacitance = $("#capacitance").val();
+                data.downPipeDiameter = $("#downPipeDiameter").val();
+                data.ductRate = $("#ductRate").val();
+                data.selfCarPortSize = $("#selfCarPortSize").val();
+                data.aroundCarPortSize = $("#aroundCarPortSize").val();
+
+                //费用相关
+                data.chummageDaily = $("#chummageDaily").val();
+                data.chummageMonth = $("#chummageMonth").val();
+                data.chummageYear = $("#chummageYear").val();
+                data.transferCost = $("#transferCost").val();
+                data.chummageIncrease = $("input[type=radio][name=chummageIncrease]:checked").val();
+                data.chummageIncreaseRule = $("#chummageIncreaseRule").val();
+                data.deposit = $("#deposit").val();
+                data.payMoney = $("#payMoney").val();
+                data.propertyFee = $("#propertyFee").val();
+                data.waterRate = $("#waterRate").val();
+                data.gasRate = $("#gasRate").val();
+                data.elasRate = $("#elasRate").val();
+                data.nextPayRentDate = $("#nextnian").val() + "-" + $("#nextyue").val() + "-" + $("#nextri").val() + " 00:00:00";
+                data.maxRentYear = $("#maxRentYear").val();
+                data.repetition = $("input[type=radio][name=repetition]:checked").val();
+
+
+                //评价
+                data.marchatLevel = $("#marchatLevel").val();
+                data.houseLevel = $("#houseLevel").val();
+                data.perPersonMin = $("#perPersonMin").val();
+                data.perPersonMax = $("#perPersonMax").val();
+                data.proposed = $("#proposed").val();
+                data.good = $("#good").val();
+                data.bad = $("#bad").val();
+
+                //来源
+                data.houseSource = $("#houseSource").val();
+                data.sourceName = $("#sourceName").val();
+                data.describtion = $("#describtion").val();
+
+
+                data.business = $("input[type=radio][name=shifouyingye]:checked").val();
+                data.ownerType = $("input[type=checkbox][name=lianxirenshuxing]:checked").val();
+                return data;
+            }
+    </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">百米厨房</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">商铺</a></li>
+                        <li><a href="#">客户</a></li>
+                        <li><a href="#">经纪人</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="/houses">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">操作 <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">修改用户信息(待定)</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- /.container -->
+        </nav> <!-- /.navbar -->
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="html-contents">
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">《营业执照》:</label>
+                            <select id="businessLicence" name="businessLicence"
+                            type="text" class="form-control mix select2">
+                                <option value="0">无，不可新办</option>
+                                <option value="1">无，可新办</option>
+                                <option value="10">有，可使用，不可转让</option>
+                                <option value="11">有，可转让</option>
+                            </select>
+                            <input type="checkbox" class="dazhao" name="dazhao"/> 大照
+                        </div>
+                        <div class="line">
+                            <label class="navs">《食品经营许可证》:</label>
+                            <select id="foodAndBeverageBusinessLicense" name="foodAndBeverageBusinessLicense"
+                            type="text" class="form-control mix select2">
+                                <option value="0">无，不可新办</option>
+                                <option value="1">无，可新办</option>
+                                <option value="10">有，可使用，不可转让</option>
+                                <option value="11">有，可转让</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">《餐饮服务许可证》:</label>
+                            <select id="foodAndBeverageBusinessLicense" name="foodAndBeverageBusinessLicense"
+                            type="text" class="form-control mix select2">
+                                <option value="0">无，不可新办</option>
+                                <option value="1">无，可新办</option>
+                                <option value="10">有，可使用，不可转让</option>
+                                <option value="11">有，可转让</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">《消防安全检查许可证》:</label>
+                            <select id="fireSafetyPermition" name="fireSafetyPermition"
+                            type="text" class="form-control mix select2">
+                                <option value="0">无，不可新办</option>
+                                <option value="1">无，可新办</option>
+                                <option value="10">有，可使用，不可转让</option>
+                                <option value="11">有，可转让</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">发票 :</label>
+                            <select id="invoice" name="invoice"
+                            type="text" class="form-control mix select2">
+                                <option value="0">不可开</option>
+                                <option value="1">可新办</option>
+                                <option value="2">可代开</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">联系人:</label>
+                            <input type="text" class="form-control mix" id="contactName" name="min-m" />
+                        </div>
+                        <div class="line">
+                            <label class="navs">联系电话:</label>
+                            <input type="text" class="form-control mix" id="contactMobile" name="min-m" />
+                        </div>
+                        <div class="line">
+                            <label class="navs">联系人属性:</label>
+                            <div class="contents">
+                                <label class="label-type">
+                                    <input type="radio" name="contactType" value="1" checked="checked"> 业主
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="contactType" value="2"> 中介
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="contactType" value="3"> 商户
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="contactType" value="4"> 物业
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="contactType" value="5"> 其它
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">业务类型:</label>
+                            <select id="rentType" name="rentType"
+                            type="text" class="form-control mix select2">
+                                <option value="1">出租</option>
+                                <option value="2">出售</option>
+                                <option value="3">独家出租</option>
+                                <option value="4">独家出售</option>
+                                <option value="5">自营出租</option>
+                                <option value="6">自营出售</option>
+                                <option value="7">其它</option>
+                            </select>
+                            <input type="checkbox" class="dazhao" name="rentType"/> 整租
+                        </div>
+                        <div class="line">
+                            <label class="navs">租售状态:</label>
+                            <select id="rentStatus" name="rentStatus"
+                            type="text" class="form-control mix select2">
+                                <option value="1">可出租</option>
+                                <option value="2">可出售</option>
+                                <option value="3">已经预定</option>
+                                <option value="4">已经成交</option>
+                                <option value="5">失效</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        地址:<input type="text" class="form-control mix" id="address" name="min-m" />
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">是否营业:</label>
+                            <div class="contents">
+                                <label class="label-type">
+                                    <input type="radio" name="operateStatus" value="0" checked="checked"> 营业中
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="operateStatus" value="1"> 未营业
+                                </label>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label class="navs">当前品牌:</label>
+                            <input type="text" class="form-control mix" id="businessName" name="min-m" />
+                        </div>
+                        <div class="line">
+                            <label class="navs">当前业态:</label>
+                            <input type="text" class="form-control mix" id="businessStatus" name="min-m" />
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">商铺类型:</label>
+                            <div class="contents">
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="1" checked="checked"> 写字楼配套
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="2"> 商场/购物中心
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="3"> 临街店铺
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="4"> 社区配套
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="5"> 商业街
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="6"> 档口
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="7"> 其他
+                                </label>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label class="navs">产权人:</label>
+                            <input type="text" class="form-control mix" id="owner" name="min-m" />
+                        </div>
+                        <div class="line">
+                            <label class="navs">产权人类型:</label>
+                            <select id="ownerType" name="ownerType"
+                            type="text" class="form-control mix select2">
+                                <option value="1">个人</option>
+                                <option value="2">私营企业/合资企业</option>
+                                <option value="3">外资企业</option>
+                                <option value="4">国有企业/集体所有制企业</option>
+                                <option value="5">政府</option>
+                                <option value="6">事业单位</option>
+                                <option value="7">社会组织</option>
+                                <option value="8">其他</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">房屋规划用途:</label>
+                            <select id="propertyRightType" name="propertyRightType"
+                            type="text" class="form-control mix select2">
+                                <option value="1">商业</option>
+                                <option value="2">办公</option>
+                                <option value="3">住宅</option>
+                                <option value="4">文物</option>
+                                <option value="5">集体宿舍</option>
+                                <option value="6">工业</option>
+                                <option value="7">公用设施</option>
+                                <option value="8">交通</option>
+                                <option value="9">仓储</option>
+                                <option value="10">信息</option>
+                                <option value="11">教育科研</option>
+                                <option value="12">医疗卫生</option>
+                                <option value="13">文化新闻娱乐体育</option>
+                                <option value="14">园林绿化</option>
+                                <option value="15">军事</option>
+                                <option value="16">物业公共配套</option>
+                                <option value="17">物业服务</option>
+                                <option value="18">社区服务</option>
+                                <option value="19">汽车库</option>
+                                <option value="20">车位</option>
+                                <option value="21">自行车库</option>
+                                <option value="22">储藏室</option>
+                                <option value="23">外事</option>
+                                <option value="24">宗教</option>
+                                <option value="25">监狱</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">楼层:</label>
+                            <input type="text" class="form-control mix" id="floor" name="min-m" />
+                        </div>
+                        <div class="line">
+                            <label class="navs">面积:</label>
+                            <input type="text" class="form-control mix" id="areas" name="min-m" />m2
+                            <label class="navs">建筑面积:</label>
+                            <input type="text" class="form-control mix" id="buildAreas" name="min-m" />m2
+                            <label class="navs">使用面积:</label>
+                            <input type="text" class="form-control mix" id="useAreas" name="min-m" />m2
+                        </div>
+                        <div class="line">
+                            <label class="navs">展示面宽度:</label>
+                            <input type="text" class="form-control mix" id="showLength" name="min-m" />m2
+                        </div>
+                        <div class="line">
+                            <label class="navs">层高:</label>
+                            <input type="text" class="form-control mix" id="height" name="min-m" />m
+                        </div>
+                        <div class="line">
+                            <label class="navs">遮挡程度:</label>
+                            <input type="text" class="form-control mix" id="shade" name="min-m" />m
+                        </div>
+                        <div class="line">
+                            <label class="navs">商铺类型:</label>
+                            <div class="contents">
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="0" checked="checked"> 有装修
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="houseType" value="1"> 无装修
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">店招面积1:</label>
+                            <input type="text" class="form-control mix" id="shopSignSizeOne" name="min-m" />m2
+                        </div>
+                        <div class="line">
+                            <label class="navs">店招面积2:</label>
+                            <input type="text" class="form-control mix" id="shopSignSizeTwo" name="min-m" />m2
+                        </div>
+                        <div class="line">
+                            <label class="navs">配套设施:</label>
+                            <div class="contents">
+                                <label class="label-type">
+                                    <input type="checkbox" name="power"> 动力电
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="capacityIncrease"> 可增容
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="upPipe"> 上水
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="downPipe"> 下水
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="blowOff"> 排污管道
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="greaseTrap"> 隔油池
+                                </label> <br />
+                                <label class="label-type">
+                                    <input type="checkbox" name="fire"> 明火
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="gas"> 天然气
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="gasCylinders"> 可用燃气管
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="duct"> 排烟管道
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="oilFume"> 油烟净化器
+                                </label>
+                                <label class="label-type">
+                                    <input type="checkbox" name="outWard"> 外摆区
+                                </label>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label class="navs">最大电容量:</label>
+                            <input type="text" class="form-control mix" id="capacitance" name="min-m" />kw
+                        </div>
+                        <div class="line">
+                            <label class="navs">下水管径:</label>
+                            <input type="text" class="form-control mix" id="downPipeDiameter" name="min-m" />mm
+                        </div>
+                        <div class="line">
+                            <label class="navs">最大排风量:</label>
+                            <input type="text" class="form-control mix" id="ductRate" name="min-m" />m3/h
+                        </div>
+                        <div class="line">
+                            <label class="navs">自有车位数:</label>
+                            <input type="text" class="form-control mix" id="selfCarPortSize" name="min-m" />个
+                        </div>
+                        <div class="line">
+                            <label class="navs">周边停车位数量:</label>
+                            <select id="aroundCarPortSize" name="aroundCarPortSize"
+                            type="text" class="form-control mix select2">
+                                <option value="0">无</option>
+                                <option value="1">紧张</option>
+                                <option value="2">一般</option>
+                                <option value="3">充裕</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">日租金:</label>
+                            <input type="text" class="form-control mix" id="chummageDaily" name="min-m" />m2
+                        </div>
+                        <div class="line">
+                            <label class="navs">月租金:</label>
+                            <input type="text" class="form-control mix" id="chummageMonth" name="min-m" />m2
+                        </div>
+                        <div class="line">
+                            <label class="navs">年租金:</label>
+                            <input type="text" class="form-control mix" id="chummageYear" name="min-m" />m2
+                        </div>
+                        <div class="line">
+                            <label class="navs">租金有无递增:</label>
+                            <div class="contents">
+                                <label class="label-type-hasIn">
+                                    <input type="radio" name="order-status" id="chummageIncrease"> 有递增,规则:
+                                    <input type="text" class="form-control mix-in" id="chummageIncreaseRule" name="min-m" />m2
+                                </label>
+                                <label class="label-type-hasIn">
+                                    <input type="radio" name="order-status" id="chummageIncrease"> 无递增
+                                </label>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label class="navs">转让费:</label>
+                            <input type="text" class="form-control mix" id="transferCost" name="min-m" />m2
+                        </div>
+                        <div class="line">
+                            <label class="navs">支付方式: 压</label>
+                            <input type="text" class="form-control mix" id="deposit" name="min-m" />个月,
+                            <label class="navs">付</label>
+                            <input type="text" class="form-control mix" id="payMoney" name="min-m" />个月
+                        </div>
+                        <div class="line">
+                            <label class="navs">物业费:</label>
+                            <input type="text" class="form-control mix" id="propertyFee" name="min-m" />元/月
+                        </div>
+                        <div class="line">
+                            <label class="navs">水费:</label>
+                            <input type="text" class="form-control mix" id="waterRate" name="min-m" />元/顿
+                        </div>
+                        <div class="line">
+                            <label class="navs">电费:</label>
+                            <input type="text" class="form-control mix" id="elasRate" name="min-m" />元/度
+                        </div>
+                        <div class="line">
+                            <label class="navs">天然气费:</label>
+                            <input type="text" class="form-control mix" id="gasRate" name="min-m" />元/m2
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">下次缴费日期:</label>
+                            <select id="nextnian" name="nextnian"
+                            type="text" class="form-control mix select2">
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                            </select>
+                            <select id="nextyue" name="nextyue"
+                            type="text" class="form-control mix select2">
+                                <option value="01">1</option>
+                                <option value="02">2</option>
+                                <option value="03">3</option>
+                                <option value="04">4</option>
+                                <option value="05">5</option>
+                                <option value="06">6</option>
+                                <option value="07">7</option>
+                                <option value="08">8</option>
+                                <option value="09">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <select id="nextri" name="nextri"
+                            type="text" class="form-control mix select2">
+                                <option value="01">1</option>
+                                <option value="02">2</option>
+                                <option value="03">3</option>
+                                <option value="04">4</option>
+                                <option value="05">5</option>
+                                <option value="06">6</option>
+                                <option value="07">7</option>
+                                <option value="08">8</option>
+                                <option value="09">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">最长可租:</label>
+                            <input type="text" class="form-control mix" id="maxRentYear" name="min-m" />年
+                        </div>
+                        <div class="line">
+                            <label class="navs">是否可重签:</label>
+                            <div class="contents">
+                                <label class="label-type">
+                                    <input type="radio" name="repetition" value="1"> 是
+                                </label>
+                                <label class="label-type">
+                                    <input type="radio" name="repetition" value="0"> 无
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">商圈等级:</label>
+                            <select id="marchatLevel" name="marchatLevel"
+                            type="text" class="form-control mix select2">
+                                <option value="1">S</option>
+                                <option value="2">A+</option>
+                                <option value="3">A</option>
+                                <option value="4">A-</option>
+                                <option value="5">B+</option>
+                                <option value="6">B</option>
+                                <option value="7">B-</option>
+                                <option value="8">C+</option>
+                                <option value="9">C</option>
+                                <option value="10">C-</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">铺原等级:</label>
+                            <select id="houseLevel" name="houseLevel"
+                            type="text" class="form-control mix select2">
+                                <option value="1">S</option>
+                                <option value="2">A+</option>
+                                <option value="3">A</option>
+                                <option value="4">A-</option>
+                                <option value="5">B+</option>
+                                <option value="6">B</option>
+                                <option value="7">B-</option>
+                                <option value="8">C+</option>
+                                <option value="9">C</option>
+                                <option value="10">C-</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">建议人均:</label>
+                            <div class="contents">
+                                <input type="text" class="form-control mix" id="perPersonMin" name="min-m" />
+                                ~
+                                <input type="text" class="form-control mix" id="perPersonMax" name="min-m" /> 元
+                            </div>
+                        </div>
+                        <div class="line">
+                            <label class="navs">建议业态:</label>
+                            <input type="text" class="form-control mix" id="proposed" name="min-m" />
+                        </div>
+                        <div class="line">
+                            <label class="navs">优点:</label>
+                            <input type="text" class="form-control mix-big" id="good" name="min-m" />
+                        </div>
+                        <div class="line">
+                            <label class="navs">缺点:</label>
+                            <input type="text" class="form-control mix-big" id="bad" name="min-m" />
+                        </div>
+                    </div>
+                    <div class="top-bodder">
+                        <div class="line">
+                            <label class="navs">来源类型:</label>
+                            <select id="houseSource" name="houseSource"
+                            type="text" class="form-control mix select2">
+                                <option value="1">spider</option>
+                                <option value="2">其他网站</option>
+                                <option value="3">大客户</option>
+                                <option value="4">内推</option>
+                                <option value="5">扫楼</option>
+                                <option value="6">合作渠道</option>
+                                <option value="7">自助发布</option>
+                                <option value="8">其他</option>
+                            </select>
+                        </div>
+                        <div class="line">
+                            <label class="navs">来源/推荐人:</label>
+                            <input type="text" class="form-control mix" id="sourceName" name="min-m" />
+                        </div>
+                        <div class="line">
+                            <label class="navs">铺原描述:</label>
+                            <input type="text" class="form-control mix-big" id="describtion" name="min-m" />
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-xs btn-primary" id="saveButton">保存</button>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

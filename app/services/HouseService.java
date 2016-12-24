@@ -4,7 +4,6 @@ import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.Query;
 import exception.KitchenException;
 import form.house.*;
-import models.Credential;
 import models.House;
 import helper.Page;
 import play.Logger;
@@ -36,34 +35,34 @@ public class HouseService {
         if (form.getChummageDailyS() != null && form.getChummageDailyE() != null){
             where.between("chummage_daily", form.getChummageDailyS(), form.getChummageDailyE());
         }
-        if (form.getDistrictCode() != null){
+        if (form.getDistrictCode() != null && form.getDistrictCode() != 0){
             where.eq("district_code", form.getDistrictCode());
         }
         /**
          private List<Integer> signs; //标志建筑物
          */
-        if (form.getPower() != null) {
+        if (form.getPower() != null && form.getPower() != 0) {
             where.eq("power", form.getPower());
         }
-        if (form.getDownPipe() != null ){
+        if (form.getDownPipe() != null && form.getDownPipe() != 0){
             where.eq("down_pipe", form.getDownPipe());
         }
-        if (form.getGasCylinders() != null){
+        if (form.getGasCylinders() != null && form.getGasCylinders() != 0){
             where.eq("gas_cylinders", form.getGasCylinders());
         }
-        if (form.getFire() != null){
+        if (form.getFire() != null && form.getFire() != 0){
             where.eq("fire", form.getFire());
         }
-        if (form.getDuct() != null){
+        if (form.getDuct() != null && form.getDuct() != 0){
             where.eq("duct",form.getDuct());
         }
-        if (form.getBlowOff() != null){
+        if (form.getBlowOff() != null && form.getBlowOff() != 0){
             where.eq("blow_off", form.getBlowOff());
         }
-        if (form.getGreaseTrap() != null){
+        if (form.getGreaseTrap() != null && form.getGreaseTrap() != 0){
             where.eq("grease_trap", form.getGreaseTrap());
         }
-        if (form.getOilFume() != null){
+        if (form.getOilFume() != null && form.getOilFume() != 0){
             where.eq("oil_fume", form.getOilFume());
         }
         if (form.getHouseType() != null){
@@ -115,7 +114,7 @@ public class HouseService {
     public boolean updatePosition(Integer id, HousePositionForm position){
         try{
             House old = byId(id);
-            old.setPosition(position);
+            old.FsetPosition(position);
             old.save();
         }catch (Exception e){
             logger.warn("出现异常{}", e);
@@ -127,7 +126,7 @@ public class HouseService {
     public boolean updateFacility(Integer id, HouseFacilityForm position){
         try{
             House old = byId(id);
-            old.setFacility(position);
+            old.FsetFacility(position);
             old.save();
         }catch (Exception e){
             logger.warn("出现异常{}", e);

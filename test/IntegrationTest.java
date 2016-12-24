@@ -11,7 +11,7 @@ import static org.fluentlenium.core.filter.FilterConstructor.*;
 public class IntegrationTest {
 
     /**
-     * add your integration test here
+     * houseAdd your integration test here
      * in this example we just check if the welcome page is being shown
      */
     @Test
@@ -20,6 +20,14 @@ public class IntegrationTest {
             browser.goTo("http://localhost:3333");
             assertTrue(browser.pageSource().contains("Your new application is ready."));
         });
+    }
+
+    @Test
+    public void testInteger(){
+        String aS = "1.6";
+        Double c = Double.valueOf(aS) * 100 ;
+        Long a = c.longValue();
+        System.out.print("");
     }
 
 }

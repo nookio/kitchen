@@ -23,7 +23,7 @@ public class HouseCostForm extends BaseForm{
 
     private String chummageIncreaseRule; //租金递增规则
 
-    private String transferCost; //转让费
+    private Long transferCost; //转让费
 
     private String deposit; //压几个月
 
@@ -78,11 +78,11 @@ public class HouseCostForm extends BaseForm{
         this.chummageIncreaseRule = chummageIncreaseRule;
     }
 
-    public String getTransferCost() {
+    public Long getTransferCost() {
         return transferCost;
     }
 
-    public void setTransferCost(String transferCost) {
+    public void setTransferCost(Long transferCost) {
         this.transferCost = transferCost;
     }
 

@@ -22,6 +22,12 @@ label {
     -ms-box-sizing: border-box;
     -o-box-sizing: border-box;
     background-color: #ffffff;
+
+}
+
+
+.top-bodder {
+    border-top: thick dotted #2a6496;
 }
 
 .middle-nav {
@@ -86,14 +92,18 @@ label {
 
 .navs {
     display: inline-block;
-    width: 6%;
+    width: 18%;
     text-align: right;
     margin-right: 1%;
     vertical-align: top;
 }
 
+.dazhao{
+    margin-left: 2%;
+}
+
 .contents {
-    width: 90%;
+    width: 70%;
     display: inline-block;
 }
 
@@ -102,7 +112,24 @@ label {
 }
 
 .mix {
-    width: 5% !important;
+    width: 15% !important;
+    height: 30px !important;
+    display: inline-block;
+}
+
+.mix-middle {
+    width: 15% !important;
+    height: 30px !important;
+    display: inline-block;
+}
+
+.mix-big {
+    width: 50% !important;
+    height: 100px !important;
+    display: inline-block;
+}
+
+.mix-in {
     height: 30px !important;
     display: inline-block;
 }
@@ -136,7 +163,13 @@ label {
 .label-type {
     margin-right: 1%;
     display: inline-block;
-    width: 12%;
+    width: 18%;
+}
+
+.label-type-hasIn {
+    margin-right: 1%;
+    display: inline-block;
+    width: 40%;
 }
 
 .tags {
@@ -185,13 +218,26 @@ label {
     right: 9%;
 }
 
-.pingmi-li {
+.firse {
     margin-left: 20px;
-    text-align: center;
+    text-align: right;
+    width: 25%;
+}
+
+.testRight{
+    text-align: right;
+}
+
+.pingmi-li {
+    margin-left: 10%;
+    text-align: right;
+    width: 20%;
 }
 
 .money-li, .message-li {
+    margin-right: 5%;
     text-align: right;
+    width: 20%;
 }
 
 .show-div {
