@@ -1,0 +1,82 @@
+package models;
+
+import com.avaje.ebean.annotation.CreatedTimestamp;
+import com.avaje.ebean.annotation.UpdatedTimestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import java.util.Date;
+
+/**
+ * @Created_With kitchen
+ * @Author: kris
+ * @Email: wubinwu@meituan.com
+ * @Date: 16/12/8 下午1:00
+ * @Descrition:
+ */
+@Entity
+public class Contact extends Base {
+
+    public final static Finder<Integer, Contact> finder = new Finder<Integer, Contact>(Contact.class);
+
+
+    private Integer OWNER = 1;
+    private Integer AGANCY = 2;
+    private Integer BUSINESS = 3;
+    private Integer ESTATE = 4;
+
+    @Column
+    private String name;
+    @Column
+    private String mobile;
+    @Column
+    private Integer type;
+
+    @Column
+    @UpdatedTimestamp
+    private Date updatedDate;
+
+    @Column
+    @CreatedTimestamp
+    private Date createdDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+}

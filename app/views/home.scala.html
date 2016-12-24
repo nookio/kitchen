@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="@routes.Assets.versioned("javascripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
+
+    <script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquerysession.js")"></script>
+    <script >
+    function checkToken() {
+        $.session.remove('user');
+        if (null == $.session.get('user')){
+            location.href = "/login";
+        }
+    }
+    window.onload = checkToken
+  </script>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+</body>
+</html>

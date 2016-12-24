@@ -1,0 +1,94 @@
+@(house: House)
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="@routes.Assets.versioned("stylesheets/boot/bootstrap.min.css")" rel="stylesheet">
+        <link href="@routes.Assets.versioned("stylesheets/boot/offcanvas.css")" rel="stylesheet">
+        <script src="@routes.Assets.versioned("javascripts/react/react.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/react/react-dom.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/react/browser.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/boot/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/boot/html5shiv.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/boot/respond.min.js")" type="text/javascript"></script>
+    </head>
+    <script type="text/babel">
+    var HelloMessage = React.createClass({
+        render: function() {
+            return <h1> Hello </h1>
+          }
+        });
+    function setHouse() {
+      ReactDOM.render(
+         <HelloMessage />,
+         <h1>@house.getAddress </h1>,
+         document.getElementById('example')
+      );
+    }
+//    window.onload  = setHouse
+    </script>
+
+    <script type="text/babel">
+    var HelloMessage = React.createClass({
+                render: function() {
+                    return (
+                    <nav className="navbar navbar-fixed-top navbar-inverse" role="navigation">
+                        <div className="container">
+                            <div className="navbar-header">
+                                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span className="sr-only">Toggle navigation</span>
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                </button>
+                                <a className="navbar-brand" href="#">百米厨房</a>
+                            </div>
+                            <div id="navbar" className="collapse navbar-collapse">
+                                <ul className="nav navbar-nav">
+                                    <li><a href="#">商铺</a></li>
+                                    <li><a href="#">客户</a></li>
+                                    <li><a href="#">经纪人</a></li>
+                                </ul>
+                                <ul className="nav navbar-nav navbar-right">
+                                    <li className="active"><a href="/houses">Home</a></li>
+                                    <li className="dropdown">
+                                        <a href="#" className="dropdown-toggle" data-toggle="dropdown">操作 <span className="caret"></span></a>
+                                        <ul className="dropdown-menu" role="menu">
+                                            <li><a href="#">修改用户信息(待定)</a></li>
+                                            <li className="divider"></li>
+                                            <li><a href="#">退出</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>);
+                }
+            });
+
+    function setHouses() {
+            ReactDOM.render(
+                <HelloMessage/>,
+                document.getElementById('example')
+            );
+    }
+     window.onload  = setHouses
+    </script>
+    <body>
+
+
+        @*<script type="text/babel">*@
+        @*var HelloMessage = React.createClass({*@
+        @*render: function() {*@
+        @*return <h1>Hello {this.props.name}</h1>;*@
+        @*}*@
+        @*});*@
+
+        @*ReactDOM.render(*@
+        @*<HelloMessage name="John" />,*@
+        @*document.getElementById('example')*@
+        @*);*@
+        @*</script>*@
+        <div id="example"></div>
+    </body>
+</html>
