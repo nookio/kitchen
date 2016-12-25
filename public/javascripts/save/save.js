@@ -2,6 +2,63 @@
  * Created by kris on 16/12/17.
  */
 
+function getProvice() {
+    var result = new Object();
+    $.ajax({
+        url: "/province",
+        type: "GET",
+        contentType: 'application/json;charset=utf-8',
+        dataType: "json",
+        success: function (data) {
+            var resultObj = eval(data);
+            result = province(resultObj.data, "#province");
+        }
+    });
+    return result;
+}
+
+function getCity(provinceCode) {
+    if (null == provinceCode) provinceCode = 110000;
+    var result = new Object();
+    $.ajax({
+        url: "/cities/" + provinceCode,
+        type: "GET",
+        contentType: 'application/json;charset=utf-8',
+        dataType: "json",
+        success: function (data) {
+            var resultObj = eval(data);
+            result = province(resultObj.data, "#city");
+        }
+    });
+    return result;
+}
+
+function getArea(cityCode) {
+    if (null == cityCode) cityCode = 110100;
+    var result = new Object();
+    $.ajax({
+        url: "/area/" + cityCode,
+        type: "GET",
+        contentType: 'application/json;charset=utf-8',
+        dataType: "json",
+        success: function (data) {
+            var resultObj = eval(data);
+            result = province(resultObj.data, "#area");
+        }
+    });
+    return result;
+}
+
+
+
+function province(provinces, name) {
+    $(name).empty();
+    for (var i=0; i< provinces.length; i++){
+        $(name).append("<option id=name value="+provinces[i].code + ">"+ provinces[i].name+"</option>");
+    }
+}
+
+
 function get() {
     var result = new Object();
     $.ajax({

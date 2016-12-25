@@ -32,6 +32,16 @@
             window.onload = checkToken;
 
             $(document).ready(function () {
+                getProvice()
+                getCity($("#province").val())
+                getArea($("#city").val())
+                $("#province").change(function () {
+                    getCity($("#province").val())
+                })
+                $("#city").change(function () {
+                    getArea($("#city").val())
+                })
+
                 $("#saveButton").click(function () {
                     save(getData());
                 })
@@ -56,6 +66,9 @@
                 data.rentStatus = $("#rentStatus").val();
                 //虾面是地理信息
                 data.address = $("#address").val();
+                data.provinceCode = $("#provinceCode").val();
+                data.cityCode = $("#cityCode").val();
+                data.areaCode = $("#areaCode").val();
                 //当前状态
                 data.operateStatus = $("input[type=radio][name=operateStatus]:checked").val();
                 data.businessName = $("#dangqianpinpai").val();
@@ -64,9 +77,10 @@
                 //建筑信息 //这个地方暂时有问题
                 data.houseType = $("input[type=radio][name=houseType]:checked").val();
                 data.owner = $("#owner").val();
+                data.ownerType = $("input[type=radio][name=ownerType]:checked").val();
                 data.propertyRightType = $("#propertyRightType").val();
                 data.floor = $("#floor").val();
-                data.areas = $("#mianji").val();
+                data.areas = $("#areas").val();
                 data.buildAreas = $("#buildAreas").val();
                 data.useAreas = $("#useAreas").val();
                 data.showLength = $("#showLength").val();
@@ -253,7 +267,7 @@
                     <div class="top-bodder">
                         <div class="line">
                             <label class="navs">业务类型:</label>
-                            <select id="rentType" name="rentType"
+                            <select id="rentBusinessType" name="rentBusinessType"
                             type="text" class="form-control mix select2">
                                 <option value="1">出租</option>
                                 <option value="2">出售</option>
@@ -278,6 +292,16 @@
                         </div>
                     </div>
                     <div class="top-bodder">
+                        <select id="province" name="province"
+                        type="text" class="form-control mix select2">
+                        </select>
+                        <select id="city" name="city"
+                        type="text" class="form-control mix select2">
+                        </select>
+                        <select id="area" name="area"
+                        type="text" class="form-control mix select2">
+                        </select>
+
                         地址:<input type="text" class="form-control mix" id="address" name="min-m" />
                     </div>
                     <div class="top-bodder">
@@ -507,11 +531,11 @@
                             <label class="navs">租金有无递增:</label>
                             <div class="contents">
                                 <label class="label-type-hasIn">
-                                    <input type="radio" name="order-status" id="chummageIncrease"> 有递增,规则:
+                                    <input type="radio" name="order-status" id="chummageIncrease" value="1"> 有递增,规则:
                                     <input type="text" class="form-control mix-in" id="chummageIncreaseRule" name="min-m" />m2
                                 </label>
                                 <label class="label-type-hasIn">
-                                    <input type="radio" name="order-status" id="chummageIncrease"> 无递增
+                                    <input type="radio" name="order-status" id="chummageIncrease" value="0"> 无递增
                                 </label>
                             </div>
                         </div>
@@ -669,8 +693,7 @@
                         </div>
                         <div class="line">
                             <label class="navs">缺点:</label>
-                            <textarea type="text" class="form-control mix-big" id="bad" name="min-m" >
-                            </textarea>
+                            <textarea type="text" class="form-control mix-big" id="bad" name="min-m" ></textarea>
                         </div>
                     </div>
                     <div class="top-bodder">
@@ -694,7 +717,7 @@
                         </div>
                         <div class="line">
                             <label class="navs">铺原描述:</label>
-                            <input type="text" class="form-control mix-big" id="describtion" name="min-m" />
+                            <textarea type="text" class="form-control mix-big" id="describtion" name="min-m"></textarea>
                         </div>
                     </div>
                     <button type="button" class="btn btn-xs btn-primary" id="saveButton">保存</button>

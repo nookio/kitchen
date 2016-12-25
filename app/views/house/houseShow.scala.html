@@ -218,7 +218,7 @@
                         <p> 日租金: @house.getChummageDaily 元/m2/天</p>
                         <p>月租金: @house.getChummageMonth 万元/月</p>
                         <p>年租金: @house.getChummageYear 万元/年</p>
-                        <p>租金是否会递增: @house.getChummageIncrease @house.getChummageIncreaseRule</p>
+                        <p>租金是否会递增: @house.getChummageIncreaseName @house.getChummageIncreaseRule</p>
                     </li>
                     <li class="pingmi-li">
                         <p> 支付方式: 压@house.getDeposit 个月 付 @house.getPayMoney 个月</p>
@@ -246,8 +246,8 @@
                     <li class="firse">
                         <p> 下次缴费时间: @(new Date(house.getNextPayRentDate)) </p>
                         <p>最长可租: @house.getMaxRentYear</p>
-                        <p>是否可以重签: @house.getRepetition</p>
-                        <p>租金是否会递增: @house.getChummageIncrease</p>
+                        <p>是否可以重签: @house.getRepetitionName</p>
+                        <p>租金是否会递增: @house.getChummageIncreaseName</p>
                     </li>
                 </ul>
                 <ul class="show-ul-show">

@@ -33,16 +33,13 @@ function checkResult(result) {
 }
 
 function returnList(json, name) {
-    var data;
-    var page;
-    for (var i = 0; i < json.items.length; i++) {
-        data = parseObject(json.items[i]);
-    }
     page = addPage(json);
     $(name).empty();
     $("#pages").empty();
-    $(name).append(data);
     $("#pages").append(page);
+    for (var i = 0; i < json.items.length; i++) {
+        $(name).append(parseObject(json.items[i]));
+    }
 }
 
 function addPage(json) {
@@ -58,7 +55,7 @@ function addPage(json) {
     }
     var result = "";
     for (var i = start; i < end + 1; i++) {
-        result += "<li>" + "<a href='/houses' name='page' id='page' value=" + i + ">" + i + "</a>" + "</li>";
+        result += "<li>" + "<a name='page' id='page' value=" + i + ">" + i + "</a>" + "</li>";
     }
     return result;
 }

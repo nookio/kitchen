@@ -241,6 +241,11 @@ public class NewHouseForm extends BaseForm{
         house.setPerPersonMin(stringToLong(this.perPersonMin));
         house.setPerPersonMax(stringToLong(this.perPersonMax));
         house.setProposed(this.proposed);
+        house.setGood(this.good);
+        house.setBad(this.bad);
+        house.setHouseSource(this.houseSource);
+        house.setSourceName(this.sourceName);
+        house.setDescribtion(this.describtion);
         pushBusiness(house);
         pushAddress(house);
         pushFacility(house);

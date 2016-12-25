@@ -169,6 +169,8 @@ public class HouseVo {
     //费用相关
     private Integer chummageIncrease; //租金递增
 
+    private String chummageIncreaseName; //租金递增
+
     private String chummageIncreaseRule; //租金递增规则
 
     private String deposit; //压几个月
@@ -189,6 +191,8 @@ public class HouseVo {
     private String maxRentYear; //最大可租年
 
     private Integer repetition; //可以重复签约
+
+    private String repetitionName; //可以重复签约
 
     private Integer marchatLevel; //商圈登记
 
@@ -308,6 +312,9 @@ public class HouseVo {
         vo.fireSafetyPermitionName = null == vo.fireSafetyPermition ? "" : CredentialEnums.fireLicenceMap.getOrDefault(vo.fireSafetyPermition, "");;
         vo.invoiceName = null == vo.invoice ? "" : CredentialEnums.invoiceMap.getOrDefault(vo.invoice, "");;
 
+        vo.repetitionName = 0 == vo.getRepetition() ? "否" : "是";
+        vo.chummageIncreaseName = 1 == vo.getChummageIncrease() ?  "是" : "否";
+
         vo.propertyRightTypeName = null == vo.propertyRightType ? "" : HouseEnums.propertyRightTypeMap.getOrDefault(vo.propertyRightType, "");
         vo.marchatLevelName = null == vo.marchatLevel ? "" : HouseEnums.houseLevelMap.getOrDefault(vo.marchatLevel, "");
         vo.houseSourceName = null == vo.houseSource ? "" : HouseEnums.sourceMap.getOrDefault(vo.sourceName, "");
@@ -317,13 +324,13 @@ public class HouseVo {
         vo.areaName = null == vo.getAreaCode() ? "" : areas.get(vo.getAreaCode()).getName();
         vo.decorationName = 0 == vo.getDecoration() ?  "否" : "是";
         vo.houseSourceName = null == vo.getHouseSource() ? "" : HouseEnums.sourceMap.getOrDefault(vo.getHouseSource(), "");
-        vo.setLocation(vo.cityName, vo.areaName, vo.districtName, vo.address);
+        vo.setLocation(vo.provinceName, vo.cityName, vo.areaName, vo.districtName, vo.address);
         vo.setContact(contact.getName(), contact.getType(), contact.getMobile());
         return vo;
     }
 
-    public void setLocation(String cityName, String areaName, String districtName, String address){
-        this.location = cityName + areaName + districtName + address;
+    public void setLocation(String provinceName,String cityName, String areaName, String districtName, String address){
+        this.location = provinceName + "-" + cityName + "-" +  areaName + "-" +  districtName + "-" +  address;
     }
 
     public void setContact(String owner, Integer ownerType, String mobile){
@@ -1058,5 +1065,21 @@ public class HouseVo {
 
     public void setProvinceName(String provinceName) {
         this.provinceName = provinceName;
+    }
+
+    public String getChummageIncreaseName() {
+        return chummageIncreaseName;
+    }
+
+    public void setChummageIncreaseName(String chummageIncreaseName) {
+        this.chummageIncreaseName = chummageIncreaseName;
+    }
+
+    public String getRepetitionName() {
+        return repetitionName;
+    }
+
+    public void setRepetitionName(String repetitionName) {
+        this.repetitionName = repetitionName;
     }
 }

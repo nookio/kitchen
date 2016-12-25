@@ -17,6 +17,12 @@ GET         /header                    controllers.HomeController.header
 
 GET         /boot                      controllers.HomeController.boot
 
+GET         /province                   controllers.AddressController.provinces
+
+GET         /cities/:id                   controllers.AddressController.cities(id : Integer)
+
+GET         /area/:id                   controllers.AddressController.areas(id : Integer)
+
 
 GET         /jsp                       controllers.HomeController.jsp
 
