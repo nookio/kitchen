@@ -41,5 +41,13 @@ public class ApplicationTest {
         assertTrue(html.body().contains("Your new application is ready."));
     }
 
+    @Test
+    public void testNull(){
+        Long a = 123l;
+        Integer count = 81;
+        Long result = a * count / 100;
+        System.out.print(a);
+    }
+
 
 }
