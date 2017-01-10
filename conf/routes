@@ -54,8 +54,10 @@ GET         /assets/*file              controllers.Assets.versioned(path="/publi
 
 
 #员工相关
+#登录
 POST        /staff/login               controllers.StaffController.staffLogin
-POST        /staff/logOut              controllers.StaffController.staffLogout
+#退出登录
+GET        /staff/logout              controllers.StaffController.staffLogout
 
 
 #sku相关

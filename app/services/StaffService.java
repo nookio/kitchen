@@ -4,6 +4,7 @@ import com.avaje.ebean.Finder;
 import exception.KitchenException;
 import models.Staff;
 import play.Logger;
+import utils.ERROR;
 
 import java.util.List;
 
@@ -22,16 +23,16 @@ public class StaffService {
         List<Staff> staffs = Staff.finder.query().where().eq("username", username).findList();
         if (staffs.size() == 0 ){
             logger.warn("用户不存在");
-            throw new KitchenException("用户不存在");
+            throw new KitchenException(ERROR.STAFF_NOT_EXIST);
         }
         Staff staff = staffs.get(0);
         if (!staff.checkPassword(password)){
             logger.warn("密码不正确");
-            throw new KitchenException("密码不正确");
+            throw new KitchenException(ERROR.STAFF_WRONG_PASSWORD);
         }
         if (!staff.getStatus().equals(Staff.NORMAL)){
             logger.warn("账号状态不正确");
-            throw new KitchenException("账号状态不正确");
+            throw new KitchenException(ERROR.STAFF_STATUS_BAD_STATUS);
         }
         return staff;
     }

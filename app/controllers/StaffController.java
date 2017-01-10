@@ -32,11 +32,8 @@ public class StaffController extends Controller {
         return Response.getSuccessResult(staff);
     }
 
-    @BodyParser.Of(BodyParser.Json.class)
-    @BBCommand(checkToken = false, form = StaffRegisterForm.class)
     public Result staffLogout(){
         StaffRegisterForm form = (StaffRegisterForm) ctx().args.get("--");
-        Staff staff = staffService.login(form.getUsername(), form.getPassword());
         session().remove("user");
         return Response.getSuccessResult("ok");
     }
