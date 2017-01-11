@@ -12,9 +12,13 @@ import java.util.Map;
  */
 public class CredentialEnums {
 
+    //营业执照
     public static Map<Integer, String> businessLicenceMap = new HashMap<>();
+    //食品经营许可证
     public static Map<Integer, String> foodLicenceMap = new HashMap<>();
+    //消防安全服务许可证
     public static Map<Integer, String> fireLicenceMap = new HashMap<>();
+    //发票
     public static Map<Integer, String> invoiceMap = new HashMap<>();
 
     /**

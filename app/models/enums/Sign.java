@@ -32,9 +32,9 @@ public enum Sign {
         this.name = name;
     }
 
-    private static final Map<Integer, Sign> signs = new HashMap<>();
-    private static final List<Integer> ids = new ArrayList<>();
-    private static final List<String> names = new ArrayList<>();
+    public static final Map<Integer, Sign> signs = new HashMap<>();
+    public static final List<Integer> ids = new ArrayList<>();
+    public static final List<String> names = new ArrayList<>();
 
     static{
         for (Sign sign : values()){

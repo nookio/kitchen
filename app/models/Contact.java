@@ -2,6 +2,7 @@ package models;
 
 import com.avaje.ebean.annotation.CreatedTimestamp;
 import com.avaje.ebean.annotation.UpdatedTimestamp;
+import models.enums.ContactEnums;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,11 +22,13 @@ public class Contact extends Base {
     public final static Finder<Integer, Contact> finder = new Finder<Integer, Contact>(Contact.class);
 
     @Column
-    private String name;
+    private String name; //姓名
+
     @Column
-    private String mobile;
+    private String mobile; //电话
+
     @Column
-    private Integer type;
+    private Integer type = ContactEnums.OWNER_CONTACT; //默认是业主
 
     @Column
     @UpdatedTimestamp

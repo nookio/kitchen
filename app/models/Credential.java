@@ -27,13 +27,13 @@ public class Credential extends Base {
     private Integer businessLicence = 0; //营业执照
 
     @Column
-    private Integer wholeBussiness = 0; //是否大照
+    private Integer wholeBusiness = 0; //是否大照
 
     @Column
     private Integer foodAndBeverageBusinessLicense = 0;  //餐饮经营许可证
 
     @Column
-    private Integer fireSafetyPermition = 0; //消防许可证
+    private Integer fireSafetyPermission = 0; //消防许可证
 
     @Column
     private Integer invoice = 0; //发票
@@ -58,12 +58,12 @@ public class Credential extends Base {
         this.businessLicence = businessLicence;
     }
 
-    public Integer getWholeBussiness() {
-        return wholeBussiness;
+    public Integer getWholeBusiness() {
+        return wholeBusiness;
     }
 
-    public void setWholeBussiness(Integer wholeBussiness) {
-        this.wholeBussiness = wholeBussiness;
+    public void setWholeBusiness(Integer wholeBusiness) {
+        this.wholeBusiness = wholeBusiness;
     }
 
     public Integer getFoodAndBeverageBusinessLicense() {
@@ -74,12 +74,12 @@ public class Credential extends Base {
         this.foodAndBeverageBusinessLicense = foodAndBeverageBusinessLicense;
     }
 
-    public Integer getFireSafetyPermition() {
-        return fireSafetyPermition;
+    public Integer getFireSafetyPermission() {
+        return fireSafetyPermission;
     }
 
-    public void setFireSafetyPermition(Integer fireSafetyPermition) {
-        this.fireSafetyPermition = fireSafetyPermition;
+    public void setFireSafetyPermission(Integer fireSafetyPermission) {
+        this.fireSafetyPermission = fireSafetyPermission;
     }
 
     public Integer getInvoice() {

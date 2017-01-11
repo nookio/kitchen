@@ -5,9 +5,10 @@ import helper.DateUtil;
 import models.Contact;
 import models.Credential;
 import models.House;
+import models.Signs;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Date;
+import java.util.List;
 
 /**
  * @Created_With kitchen
@@ -18,13 +19,88 @@ import java.util.Date;
  */
 public class NewHouseForm extends BaseForm{
 
+    /**
+     * 资质
+     */
+    //营业执照
+    private Integer businessLicence;
+    //是否是大照
+    private Integer wholeBusiness;
+    //视频经营许可证
+    private Integer foodAndBeverageBusinessLicense;
+    //火安全
+    private Integer fireSafetyPermission;
+    //发票
+    private Integer invoice;
+
+    public Credential toCredential(){
+        Credential credential = new Credential();
+        credential.setBusinessLicence(this.businessLicence);
+        credential.setWholeBusiness(this.wholeBusiness);
+        credential.setFoodAndBeverageBusinessLicense(this.foodAndBeverageBusinessLicense);
+        credential.setFireSafetyPermission(this.fireSafetyPermission);
+        credential.setInvoice(this.invoice);
+        return credential;
+    }
+
+
+    /**
+     * 联系人
+     */
+    //姓名
+    private String contactName;
+    //联系人电话号码
+    private String contactMobile;
+    //联系人类型 默认是1
+    private Integer contactType;
+
+
+    public Contact toContact(){
+        Contact contact = new Contact();
+        contact.setMobile(this.contactMobile);
+        contact.setName(this.contactName);
+        contact.setType(this.contactType);
+        return contact;
+    }
+
+
+    /**
+     * 租售信息
+     */
+    //租售类型
     private Integer rentBusinessType = 0;
+    //租售状态
+    private Integer rentStatus = 0;
 
-    private String rentBusinessTypeName;
 
-    private Integer rentStatus = 0; //租售状态
+    /**
+     * 标志物建筑
+     */
+    List<Signs> signs;
 
-    private String rentStatusName;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private Integer provinceCode;
     private String provinceName;
@@ -81,31 +157,6 @@ public class NewHouseForm extends BaseForm{
     private String businessStatus; //当前业态(米粉/面条)
 
     private String contact;
-
-    private String contactName;
-    private Integer contactType;
-    private String contactMobile;
-
-
-    //资质
-    private Integer businessLicence;
-
-    private String  businessLicenceName;
-
-    private Integer foodAndBeverageBusinessLicense;
-
-    private String foodAndBeverageBusinessLicenseName;
-
-    private Integer fireSafetyPermition;
-
-    private String fireSafetyPermitionName;
-
-    private Integer invoice;
-
-    private String invoiceName;
-
-    private Integer wholeBussiness;//是否是大照
-
 
     //当前状态
 
@@ -324,23 +375,6 @@ public class NewHouseForm extends BaseForm{
 
 
 
-    public Contact toContact(){
-        Contact contact = new Contact();
-        contact.setMobile(this.contactMobile);
-        contact.setName(this.contactName);
-        contact.setType(this.contactType);
-        return contact;
-    }
-
-    public Credential toCredential(){
-        Credential credential = new Credential();
-        credential.setBusinessLicence(this.businessLicence);
-        credential.setWholeBussiness(this.wholeBussiness);
-        credential.setFoodAndBeverageBusinessLicense(this.foodAndBeverageBusinessLicense);
-        credential.setFireSafetyPermition(this.fireSafetyPermition);
-        credential.setInvoice(this.invoice);
-        return credential;
-    }
 
     private Long stringToLong(String number){
         if (!StringUtils.isNumeric(number)) return 0l;
@@ -559,12 +593,12 @@ public class NewHouseForm extends BaseForm{
         this.foodAndBeverageBusinessLicenseName = foodAndBeverageBusinessLicenseName;
     }
 
-    public Integer getFireSafetyPermition() {
-        return fireSafetyPermition;
+    public Integer getFireSafetyPermission() {
+        return fireSafetyPermission;
     }
 
-    public void setFireSafetyPermition(Integer fireSafetyPermition) {
-        this.fireSafetyPermition = fireSafetyPermition;
+    public void setFireSafetyPermission(Integer fireSafetyPermission) {
+        this.fireSafetyPermission = fireSafetyPermission;
     }
 
     public String getFireSafetyPermitionName() {
@@ -1095,12 +1129,12 @@ public class NewHouseForm extends BaseForm{
         this.contactMobile = contactMobile;
     }
 
-    public Integer getWholeBussiness() {
-        return wholeBussiness;
+    public Integer getWholeBusiness() {
+        return wholeBusiness;
     }
 
-    public void setWholeBussiness(Integer wholeBussiness) {
-        this.wholeBussiness = wholeBussiness;
+    public void setWholeBusiness(Integer wholeBusiness) {
+        this.wholeBusiness = wholeBusiness;
     }
 
     public String getSign() {

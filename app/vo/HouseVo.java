@@ -9,7 +9,6 @@ import models.address.Province;
 import models.enums.CredentialEnums;
 import models.enums.HouseEnums;
 
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -241,7 +240,7 @@ public class HouseVo {
         this.businessStatus = house.getBusinessStatus();
         this.businessLicence = house.getCredential().getBusinessLicence();
         this.foodAndBeverageBusinessLicense = house.getCredential().getFoodAndBeverageBusinessLicense();
-        this.fireSafetyPermition = house.getCredential().getFireSafetyPermition();
+        this.fireSafetyPermition = house.getCredential().getFireSafetyPermission();
         this.invoice = house.getCredential().getInvoice();
         this.owner = house.getOwner();
         this.ownerType = house.getOwnerType();

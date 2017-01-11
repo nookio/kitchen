@@ -17,11 +17,11 @@ GET         /header                    controllers.HomeController.header
 
 GET         /boot                      controllers.HomeController.boot
 
-GET         /province                   controllers.AddressController.provinces
+GET         /province                  controllers.AddressController.provinces
 
-GET         /cities/:id                   controllers.AddressController.cities(id : Integer)
+GET         /cities/:id                controllers.AddressController.cities(id : Integer)
 
-GET         /area/:id                   controllers.AddressController.areas(id : Integer)
+GET         /area/:id                  controllers.AddressController.areas(id : Integer)
 
 
 GET         /jsp                       controllers.HomeController.jsp
@@ -57,7 +57,7 @@ GET         /assets/*file              controllers.Assets.versioned(path="/publi
 #登录
 POST        /staff/login               controllers.StaffController.staffLogin
 #退出登录
-GET        /staff/logout              controllers.StaffController.staffLogout
+GET         /staff/logout              controllers.StaffController.staffLogout
 
 
 #sku相关
@@ -65,7 +65,7 @@ GET         /house/list                controllers.HouseController.houseList
 
 GET         /house/add/generate        controllers.HouseController.add
 
-POST        /house/add                controllers.HouseController.addHouse
+POST        /house                     controllers.HouseController.addHouse
 
 POST        /house/query               controllers.HouseController.query
 

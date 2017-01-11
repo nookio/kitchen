@@ -60,19 +60,16 @@ public class House extends Base {
     private String latitude; //经度
 
     @Column
-    private String sign; //标志建筑物
-
-    @Column
-    private String mapUrl;
+    private String mapUrl; //地图url
 
     @Column
     private String mapUrlType;
 
     @Column
-    private String wholeMapUrl;
+    private String wholeMapUrl; //全景url
 
     @Column
-    private String hotMapUrl;
+    private String hotMapUrl; //热力地图
 
 
     //建筑信息   	楼层	面积（㎡）	建筑面积(㎡)	使用面积(㎡)	得房率(%)	"展示面宽度
@@ -336,7 +333,6 @@ public class House extends Base {
         this.address = null == position.getAddress() ? "" : position.getAddress();
         this.longitude = null == position.getLongitude() ? "" : position.getLongitude();
         this.latitude = null == position.getLatitude() ? "" : position.getLatitude();
-        this.sign = null == position.getSign() ? "" : position.getSign();
         this.mapUrl = null == position.getMapUrl() ? "" : position.getMapUrl();
         this.mapUrlType = null == position.getMapUrlType() ? "" : position.getMapUrlType();
         this.wholeMapUrl = null == position.getWholeMapUrl() ? "" : position.getWholeMapUrl();
@@ -480,14 +476,6 @@ public class House extends Base {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
     }
 
     public String getMapUrl() {
