@@ -28,7 +28,9 @@ public class House extends Base {
     @Column
     private String code; //商铺编号
 
-    //租售信息
+    /**
+     *   租售信息
+     */
     @Column
     private Integer rentBusinessType;  //出租业务类型
 
@@ -36,46 +38,72 @@ public class House extends Base {
     private Integer rentStatus;  //租售状态
 
 
-    //位置信息
+    /**
+     * 位置信息
+     */
+    //省
     @Column
     private Integer provinceCode;
 
+    //市
     @Column
     private Integer cityCode;
 
+    //县
     @Column
     private Integer areaCode;
 
+    //区域
     @Column
     private Integer districtCode;
 
+    //地址
     @Column
     @Size(max = 500)
-    private String address; //地址
+    private String address;
 
+    //经度
     @Column
-    private String longitude; //经度
+    private String longitude;
 
+    //纬度
     @Column
-    private String latitude; //经度
+    private String latitude;
 
+    //地图url
     @Column
-    private String mapUrl; //地图url
+    private String mapUrl;
 
+    //地图类型
     @Column
     private String mapUrlType;
 
+    //全景url
     @Column
-    private String wholeMapUrl; //全景url
+    private String wholeMapUrl;
 
     @Column
     private String hotMapUrl; //热力地图
 
-
-    //建筑信息   	楼层	面积（㎡）	建筑面积(㎡)	使用面积(㎡)	得房率(%)	"展示面宽度
-    //(m)"	层高（m）	是否属于整租店铺	遮挡程度（%）	是否带装修
+    /**
+     * 当前状态
+     */
     @Column
-    private Integer houseType; //商铺类型
+    private Integer operateStatus; //经营业态 营业中/无业
+
+    @Column
+    private String businessName; //经营品牌
+
+    @Column
+    private String businessStatus; //当前业态(米粉/面条)
+
+
+    /**
+     * 建筑信息
+     */
+    //商铺类型
+    @Column
+    private Integer houseType;
 
     //产权人类型
     @Column
@@ -90,9 +118,6 @@ public class House extends Base {
 
     @Column
     private String floor; //第几层
-
-    @Column
-    private Long height;
 
     @Column
     private String maxFloor; //一共几层
@@ -112,6 +137,10 @@ public class House extends Base {
     @Column
     private Integer showLength; //展示面宽度
 
+
+    @Column
+    private Long height;
+
     @Column
     private Integer rentType; //0:不整租, 1:整租
 
@@ -121,22 +150,76 @@ public class House extends Base {
     @Column
     private Integer decoration; //0无, 1有装修
 
+    /**
+     * 配套设施
+     */
+    @Column
+    private Long shopSignSizeOne; //店招1
+
+    @Column
+    private Long shopSignSizeTwo;  //店招2
+
+    @Column
+    private Integer power; //是否有动力电
+
+    @Column
+    private String capacitance; //电容量
+
+    @Column
+    private Integer capacityIncrease; //可以增容
+
+    @Column
+    private Integer upPipe; //上水管
+
+    @Column
+    private Integer downPipe; //下水管
+
+    @Column
+    private String downPipeDiameter; //下水管直径
+
+    @Column
+    private Integer gas; //天然气
+
+    @Column
+    private Integer gasCylinders; //煤气罐
+
+    @Column
+    private Integer fire; //明火
+
+    @Column
+    private Integer duct; //排烟道
+
+    @Column
+    private Long ductRate; //排风量
+
+    @Column
+    private Integer blowOff; //排污管道
+
+    @Column
+    private Integer greaseTrap; //隔油池
+
+    @Column
+    private Integer oilFume; //油烟过滤器
+
+    @Column
+    private Integer selfCarPortSize; //自由停车位
+
+    @Column
+    private Integer aroundCarPortSize; //周边停车位
+
+    @Column
+    private Integer outWard; //是否有外摆区
+
+
+
 
     //经营状态
     @Column
     private String business; //经营业态
 
-    @Column
-    private Integer operateStatus; //经营业态 营业中/无业
-
-    @Column
-    private String businessName; //经营品牌
-
-    @Column
-    private String businessStatus; //当前业态(米粉/面条)
-
-
-    //费用相关
+    /**
+     * 费用相关
+     */
     @Column
     private Long chummageDaily; //每天租金
 
@@ -156,22 +239,22 @@ public class House extends Base {
     private Long transferCost; //转让费
 
     @Column
-    private String deposit; //压几个月
+    private String pledgeMonth; //压几个月
 
     @Column
-    private String payMoney; //附几个月
+    private String payMonth; //附几个月
 
     @Column
     private Long propertyFee; //物业费
 
     @Column
-    private Long waterRate; //水费
+    private Long waterFee; //水费
 
     @Column
-    private Long gasRate; //天然气费
+    private Long gasFee; //天然气费
 
     @Column
-    private Long elasRate; //电费
+    private Long elasFee; //电费
 
     @Column
     private Long shopSignRate; //店招费用 /年
@@ -222,64 +305,6 @@ public class House extends Base {
     @Column
     private Integer status;
 
-
-    @Column
-    private Long shopSignSizeOne; //店招1
-
-    @Column
-    private Long shopSignSizeTwo;  //店招2
-
-    @Column
-    private Integer power; //是否有动力电
-
-    @Column
-    private Integer capacitance; //电容量
-
-    @Column
-    private Integer capacityIncrease; //可以增容
-
-    @Column
-    private Integer upPipe; //上水管
-
-    @Column
-    private Integer downPipe; //下水管
-
-    @Column
-    private Integer downPipeDiameter; //下水管直径
-
-    @Column
-    private Integer gas; //天然气
-
-    @Column
-    private Integer gasCylinders; //煤气罐
-
-    @Column
-    private Integer fire; //明火
-
-    @Column
-    private Integer duct; //排烟道
-
-    @Column
-    private Long ductRate; //排风量
-
-    @Column
-    private Integer blowOff; //排污管道
-
-    @Column
-    private Integer greaseTrap; //隔油池
-
-    @Column
-    private Integer oilFume; //油烟过滤器
-
-    @Column
-    private Integer selfCarPortSize; //自由停车位
-
-    @Column
-    private Integer aroundCarPortSize; //周边停车位
-
-    @Column
-    private Integer outWard; //是否有外摆区
-
     @Column
     @UpdatedTimestamp
     private Date updated_date;
@@ -307,7 +332,7 @@ public class House extends Base {
         this.shopSignSizeOne = null == form.getShopSignSizeOne() ? 0l :form.getShopSignSizeOne();
         this.shopSignSizeTwo = null == form.getShopSignSizeTwo() ? 0l : form.getShopSignSizeTwo();
         this.power = null == form.getPower() ? 1 : form.getPower();
-        this.capacitance = null == form.getCapacitance() ? 0 : form.getCapacitance();
+        this.capacitance = null == form.getCapacitance() ? "" : form.getCapacitance();
         this.capacityIncrease = null == form.getCapacityIncrease() ? 0 : form.getCapacityIncrease();
         this.upPipe = null == form.getUpPipe() ? 1 : form.getUpPipe();
         this.downPipe = null == form.getDownPipe() ? 1 : form.getDownPipe();
@@ -361,11 +386,11 @@ public class House extends Base {
         this.chummageIncrease = null == cost.getChummageIncrease() ? 0 :cost.getChummageIncrease();
         this.chummageIncreaseRule = null == cost.getChummageIncreaseRule() ? "" :cost.getChummageIncreaseRule();
         this.transferCost = null == cost.getTransferCost() ? 0l:cost.getTransferCost();
-        this.deposit = null == cost.getDeposit() ? "" :cost.getDeposit();
-        this.payMoney = null == cost.getPayMoney() ? "" :cost.getPayMoney();
+        this.pledgeMonth = null == cost.getDeposit() ? "" :cost.getDeposit();
+        this.payMonth = null == cost.getPayMoney() ? "" :cost.getPayMoney();
         this.propertyFee = null == cost.getPropertyFee() ? 0l :cost.getPropertyFee();
-        this.waterRate = null == cost.getWaterRate() ? 0l :cost.getWaterRate();
-        this.gasRate = null == cost.getGasRate() ? 0l :cost.getGasRate();
+        this.waterFee = null == cost.getWaterRate() ? 0l :cost.getWaterRate();
+        this.gasFee = null == cost.getGasRate() ? 0l :cost.getGasRate();
         this.shopSignRate = null == cost.getShopSignRate() ? 0l :cost.getShopSignRate();
     }
 
@@ -670,20 +695,20 @@ public class House extends Base {
         this.transferCost = transferCost;
     }
 
-    public String getDeposit() {
-        return deposit;
+    public String getPledgeMonth() {
+        return pledgeMonth;
     }
 
-    public void setDeposit(String deposit) {
-        this.deposit = deposit;
+    public void setPledgeMonth(String pledgeMonth) {
+        this.pledgeMonth = pledgeMonth;
     }
 
-    public String getPayMoney() {
-        return payMoney;
+    public String getPayMonth() {
+        return payMonth;
     }
 
-    public void setPayMoney(String payMoney) {
-        this.payMoney = payMoney;
+    public void setPayMonth(String payMonth) {
+        this.payMonth = payMonth;
     }
 
     public Long getPropertyFee() {
@@ -694,20 +719,20 @@ public class House extends Base {
         this.propertyFee = propertyFee;
     }
 
-    public Long getWaterRate() {
-        return waterRate;
+    public Long getWaterFee() {
+        return waterFee;
     }
 
-    public void setWaterRate(Long waterRate) {
-        this.waterRate = waterRate;
+    public void setWaterFee(Long waterFee) {
+        this.waterFee = waterFee;
     }
 
-    public Long getGasRate() {
-        return gasRate;
+    public Long getGasFee() {
+        return gasFee;
     }
 
-    public void setGasRate(Long gasRate) {
-        this.gasRate = gasRate;
+    public void setGasFee(Long gasFee) {
+        this.gasFee = gasFee;
     }
 
     public Long getShopSignRate() {
@@ -870,14 +895,6 @@ public class House extends Base {
         this.power = power;
     }
 
-    public Integer getCapacitance() {
-        return capacitance;
-    }
-
-    public void setCapacitance(Integer capacitance) {
-        this.capacitance = capacitance;
-    }
-
     public Integer getCapacityIncrease() {
         return capacityIncrease;
     }
@@ -902,12 +919,20 @@ public class House extends Base {
         this.downPipe = downPipe;
     }
 
-    public Integer getDownPipeDiameter() {
+    public String getDownPipeDiameter() {
         return downPipeDiameter;
     }
 
-    public void setDownPipeDiameter(Integer downPipeDiameter) {
+    public void setDownPipeDiameter(String downPipeDiameter) {
         this.downPipeDiameter = downPipeDiameter;
+    }
+
+    public String getCapacitance() {
+        return capacitance;
+    }
+
+    public void setCapacitance(String capacitance) {
+        this.capacitance = capacitance;
     }
 
     public Integer getGas() {
@@ -1023,12 +1048,12 @@ public class House extends Base {
         this.height = height;
     }
 
-    public Long getElasRate() {
-        return elasRate;
+    public Long getElasFee() {
+        return elasFee;
     }
 
-    public void setElasRate(Long elasRate) {
-        this.elasRate = elasRate;
+    public void setElasFee(Long elasFee) {
+        this.elasFee = elasFee;
     }
 
     public Long getPerPersonMin() {

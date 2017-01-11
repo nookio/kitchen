@@ -133,7 +133,7 @@ create table house (
   chummage_increase             integer,
   chummage_increase_rule        varchar(255),
   transfer_cost                 bigint,
-  deposit                       varchar(255),
+  pledgeMonth                       varchar(255),
   pay_money                     varchar(255),
   property_fee                  bigint,
   water_rate                    bigint,

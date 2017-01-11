@@ -115,12 +115,12 @@
                 data.transferCost = $("#transferCost").val();
                 data.chummageIncrease = $("input[type=radio][name=chummageIncrease]:checked").val();
                 data.chummageIncreaseRule = $("#chummageIncreaseRule").val();
-                data.deposit = $("#deposit").val();
-                data.payMoney = $("#payMoney").val();
+                data.pledgeMonth = $("#pledgeMonth").val();
+                data.payMonth = $("#payMonth").val();
                 data.propertyFee = $("#propertyFee").val();
-                data.waterRate = $("#waterRate").val();
-                data.gasRate = $("#gasRate").val();
-                data.elasRate = $("#elasRate").val();
+                data.waterFee = $("#waterFee").val();
+                data.gasFee = $("#gasFee").val();
+                data.elasFee = $("#elasFee").val();
                 data.nextPayRentDate = $("#nextnian").val() + "-" + $("#nextyue").val() + "-" + $("#nextri").val() + " 00:00:00";
                 data.maxRentYear = $("#maxRentYear").val();
                 data.repetition = $("input[type=radio][name=repetition]:checked").val();
@@ -545,9 +545,9 @@
                         </div>
                         <div class="line">
                             <label class="navs">支付方式: 压</label>
-                            <input type="text" class="form-control mix" id="deposit" name="min-m" />个月,
+                            <input type="text" class="form-control mix" id="pledgeMonth" name="min-m" />个月,
                             <label class="navs">付</label>
-                            <input type="text" class="form-control mix" id="payMoney" name="min-m" />个月
+                            <input type="text" class="form-control mix" id="payMonth" name="min-m" />个月
                         </div>
                         <div class="line">
                             <label class="navs">物业费:</label>
@@ -555,15 +555,15 @@
                         </div>
                         <div class="line">
                             <label class="navs">水费:</label>
-                            <input type="text" class="form-control mix" id="waterRate" name="min-m" />元/顿
+                            <input type="text" class="form-control mix" id="waterFee" name="min-m" />元/顿
                         </div>
                         <div class="line">
                             <label class="navs">电费:</label>
-                            <input type="text" class="form-control mix" id="elasRate" name="min-m" />元/度
+                            <input type="text" class="form-control mix" id="elasFee" name="min-m" />元/度
                         </div>
                         <div class="line">
                             <label class="navs">天然气费:</label>
-                            <input type="text" class="form-control mix" id="gasRate" name="min-m" />元/m2
+                            <input type="text" class="form-control mix" id="gasFee" name="min-m" />元/m2
                         </div>
                     </div>
                     <div class="top-bodder">

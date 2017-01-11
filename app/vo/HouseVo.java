@@ -274,12 +274,12 @@ public class HouseVo {
         this.shopSignSizeTwo = house.getShopSignSizeTwo();
         this.chummageIncrease = house.getChummageIncrease();
         this.chummageIncreaseRule = house.getChummageIncreaseRule();
-        this.deposit = house.getDeposit();
-        this.payMoney = house.getPayMoney();
+        this.deposit = house.getPledgeMonth();
+        this.payMoney = house.getPayMonth();
         this.propertyFee = house.getPropertyFee();
-        this.waterRate = house.getWaterRate();
-        this.gasRate = house.getGasRate();
-        this.elasRate = house.getElasRate();
+        this.waterRate = house.getWaterFee();
+        this.gasRate = house.getGasFee();
+        this.elasRate = house.getElasFee();
         this.nextPayRentDate = null == house.getNextPayRentDate() ? "": house.getNextPayRentDate().toString();
         this.maxRentYear = house.getMaxRentYear();
         this.repetition = house.getRepetition();
