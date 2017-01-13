@@ -21,7 +21,7 @@ public class HouseFacilityForm extends BaseForm{
 
     private Integer power; //是否有动力电
 
-    private Integer capacitance; //电容量
+    private String capacitance; //电容量
 
     private Integer capacityIncrease; //可以增容
 
@@ -29,7 +29,7 @@ public class HouseFacilityForm extends BaseForm{
 
     private Integer downPipe; //下水管
 
-    private Integer downPipeDiameter; //下水管直径
+    private String downPipeDiameter; //下水管直径
 
     private Integer gas; //下水管直径
 
@@ -78,14 +78,6 @@ public class HouseFacilityForm extends BaseForm{
         this.power = power;
     }
 
-    public Integer getCapacitance() {
-        return capacitance;
-    }
-
-    public void setCapacitance(Integer capacitance) {
-        this.capacitance = capacitance;
-    }
-
     public Integer getCapacityIncrease() {
         return capacityIncrease;
     }
@@ -110,11 +102,19 @@ public class HouseFacilityForm extends BaseForm{
         this.downPipe = downPipe;
     }
 
-    public Integer getDownPipeDiameter() {
+    public String getCapacitance() {
+        return capacitance;
+    }
+
+    public void setCapacitance(String capacitance) {
+        this.capacitance = capacitance;
+    }
+
+    public String getDownPipeDiameter() {
         return downPipeDiameter;
     }
 
-    public void setDownPipeDiameter(Integer downPipeDiameter) {
+    public void setDownPipeDiameter(String downPipeDiameter) {
         this.downPipeDiameter = downPipeDiameter;
     }
 

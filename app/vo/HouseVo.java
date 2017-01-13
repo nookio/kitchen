@@ -147,9 +147,9 @@ public class HouseVo {
 
     private Integer outWard; //是否有外摆区
 
-    private Integer capacitance; //电容量
+    private String capacitance; //电容量
 
-    private Integer downPipeDiameter; //下水管直径
+    private String downPipeDiameter; //下水管直径
 
     private Long ductRate; //排风量
 
@@ -722,22 +722,6 @@ public class HouseVo {
         this.outWard = outWard;
     }
 
-    public Integer getCapacitance() {
-        return capacitance;
-    }
-
-    public void setCapacitance(Integer capacitance) {
-        this.capacitance = capacitance;
-    }
-
-    public Integer getDownPipeDiameter() {
-        return downPipeDiameter;
-    }
-
-    public void setDownPipeDiameter(Integer downPipeDiameter) {
-        this.downPipeDiameter = downPipeDiameter;
-    }
-
     public Long getDuctRate() {
         return ductRate;
     }
@@ -1072,6 +1056,22 @@ public class HouseVo {
 
     public void setChummageIncreaseName(String chummageIncreaseName) {
         this.chummageIncreaseName = chummageIncreaseName;
+    }
+
+    public String getCapacitance() {
+        return capacitance;
+    }
+
+    public void setCapacitance(String capacitance) {
+        this.capacitance = capacitance;
+    }
+
+    public String getDownPipeDiameter() {
+        return downPipeDiameter;
+    }
+
+    public void setDownPipeDiameter(String downPipeDiameter) {
+        this.downPipeDiameter = downPipeDiameter;
     }
 
     public String getRepetitionName() {

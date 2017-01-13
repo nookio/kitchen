@@ -332,11 +332,11 @@ public class House extends Base {
         this.shopSignSizeOne = null == form.getShopSignSizeOne() ? 0l :form.getShopSignSizeOne();
         this.shopSignSizeTwo = null == form.getShopSignSizeTwo() ? 0l : form.getShopSignSizeTwo();
         this.power = null == form.getPower() ? 1 : form.getPower();
-        this.capacitance = null == form.getCapacitance() ? "" : form.getCapacitance();
+        this.capacitance = null == form.getCapacitance() ? "0" : form.getCapacitance();
         this.capacityIncrease = null == form.getCapacityIncrease() ? 0 : form.getCapacityIncrease();
         this.upPipe = null == form.getUpPipe() ? 1 : form.getUpPipe();
         this.downPipe = null == form.getDownPipe() ? 1 : form.getDownPipe();
-        this.downPipeDiameter = null == form.getDownPipeDiameter() ? 0 : form.getDownPipeDiameter();
+        this.downPipeDiameter = null == form.getDownPipeDiameter() ? "0" : form.getDownPipeDiameter();
         this.gas = null == form.getGas() ? 1 : form.getGas();
         this.gasCylinders = null == form.getGasCylinders() ? 0 : form.getGasCylinders();
         this.fire = null == form.getFire() ? 1 : form.getFire() ;
