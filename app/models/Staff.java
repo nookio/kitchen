@@ -27,19 +27,19 @@ public class Staff extends Base {
     @Column
     private String password;
 
-    @Column
-    @UpdatedTimestamp
-    private Date updated_date;
-
-    @Column
-    @CreatedTimestamp
-    private Date created_date;
-
-    @Column
+    @Column(columnDefinition = "int(4) default 1")
     private Integer title;
 
     @Column
     private Integer status;
+    @Column(columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @UpdatedTimestamp
+    private Date updated_date;
+
+    @Column(columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @CreatedTimestamp
+    private Date created_date;
+
 
     public Staff() {
     }

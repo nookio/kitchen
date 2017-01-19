@@ -46,12 +46,8 @@ public class HomeController extends Controller {
         Credential credential = credentialService.byHouseId(house.getId());
         house.setCredential(credential);
         house.setPictures(pictureService.byHouseId(house.getId()));
-        Map<Integer, Province> provinces = Province.finder.all().stream().collect(Collectors.toMap(Province::getCode, c->c));
-        Map<Integer, City> citys = City.finder.all().stream().collect(Collectors.toMap(City::getCode, c->c));
-        Map<Integer, Area> areas = Area.finder.all().stream().collect(Collectors.toMap(Area::getCode, a->a));
-        Map<Integer, District> districts = District.finder.all().stream().collect(Collectors.toMap(District::getCode, c->c));
         return ok(houseShow.apply(HouseVo.transformFromHouse(house,
-                Contact.finder.byId(house.getContactId()), provinces,citys, areas, districts)));
+                Contact.finder.byId(house.getContactId()))));
     }
 
     public Result jsp() {

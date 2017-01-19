@@ -8,6 +8,7 @@ import models.address.City;
 import models.address.District;
 import models.enums.ContactEnums;
 import models.enums.HouseEnums;
+import services.AddressService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,28 +115,24 @@ public class HousesVo {
         this.ownerType = null == contact ? 0 : contact.getType();
         this.ownerMobile = null == contact ? "" : contact.getMobile();
         this.sourceType = house.getHouseSource();
-        this.updatedTime = house.getUpdated_date().getTime();
+        this.updatedTime = house.getUpdatedDate().getTime();
 
     }
 
-    public static Page<HousesVo> transformFromHouse(Page<House> housesP,
-                                                    Map<Integer, City> citys,
-                                                    Map<Integer, Area> areas,
-                                                    Map<Integer, District> districts){
+    public static Page<HousesVo> transformFromHouse(Page<House> housesP){
         List<House> houseList = housesP.getItems();
         List<HousesVo> result = new ArrayList<>();
         houseList.stream().forEach(house->{
-            result.add(transform(house, citys, areas, districts));
+            result.add(transform(house));
         });
         return new Page<HousesVo>(result, housesP.getPage(), housesP.getSize(), housesP.getTotalPage());
     }
 
-    private static HousesVo transform(House house, Map<Integer, City> citys,
-                                      Map<Integer, Area> areas, Map<Integer, District> districts) {
+    private static HousesVo transform(House house) {
         HousesVo vo = new HousesVo(house);
-        vo.cityName = null == house.getCityCode() ? "" : citys.get(house.getCityCode()).getName();
-        vo.districtName = null == house.getDistrictCode() ? "" : districts.get(house.getDistrictCode()).getName();
-        vo.areaName = null == house.getAreaCode() ? "" : areas.get(house.getAreaCode()).getName();
+        vo.cityName = null == house.getCityCode() ? "" : AddressService.CITY_MAP.get(house.getCityCode()).getName();
+        vo.districtName = null == house.getDistrictCode() ? "" : AddressService.DISTRICT_MAP.get(house.getDistrictCode()).getName();
+        vo.areaName = null == house.getAreaCode() ? "" : AddressService.AREA_MAP.get(house.getAreaCode()).getName();
         vo.houseTypeName = null == house.getHouseType() ? "" : HouseEnums.houseTypeMap.getOrDefault(house.getHouseType(), "");
         vo.houseLevelName = null == house.getHouseLevel() ? "" : HouseEnums.houseLevelMap.getOrDefault(house.getHouseLevel(), "");
         vo.businessName = null == house.getBusiness() ? "" : HouseEnums.bussinessMap.getOrDefault(house.getBusiness(), "");

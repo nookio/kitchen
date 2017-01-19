@@ -35,7 +35,7 @@ public class HouseAreaForm extends BaseForm{
 
     private Long effien; //得房率
 
-    private Integer showLength; //展示面宽度
+    private String showLength; //展示面宽度
 
     private Integer rentType; //0:不整租, 1:整租
 
@@ -107,14 +107,6 @@ public class HouseAreaForm extends BaseForm{
         this.effien = effien;
     }
 
-    public Integer getShowLength() {
-        return showLength;
-    }
-
-    public void setShowLength(Integer showLength) {
-        this.showLength = showLength;
-    }
-
     public Integer getRentType() {
         return rentType;
     }
@@ -139,9 +131,18 @@ public class HouseAreaForm extends BaseForm{
         this.decoration = decoration;
     }
 
+    public String getShowLength() {
+        return showLength;
+    }
+
+    public void setShowLength(String showLength) {
+        this.showLength = showLength;
+    }
+
     public Integer getHouseId() {
         return houseId;
     }
+
 
     public void setHouseId(Integer houseId) {
         this.houseId = houseId;

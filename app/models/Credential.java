@@ -23,30 +23,30 @@ public class Credential extends Base {
     @Column
     private Integer houseId;
 
-    @Column
+    @Column(columnDefinition = "int(2) default 0")
     private Integer businessLicence = 0; //营业执照
 
-    @Column
+    @Column(columnDefinition = "int(2) default 0")
     private Integer wholeBusiness = 0; //是否大照
 
-    @Column
+    @Column(columnDefinition = "int(2) default 0")
     private Integer foodAndBeverageBusinessLicense = 0;  //餐饮经营许可证
 
-    @Column
+    @Column(columnDefinition = "int(2) default 0")
     private Integer fireSafetyPermission = 0; //消防许可证
 
-    @Column
+    @Column(columnDefinition = "int(2) default 0")
     private Integer invoice = 0; //发票
 
 //    @OneToOne
 //    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
 //    public House houseShow;
 
-    @Column
+    @Column(columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @UpdatedTimestamp
     private Date updated_date;
 
-    @Column
+    @Column(columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @CreatedTimestamp
     private Date created_date;
 

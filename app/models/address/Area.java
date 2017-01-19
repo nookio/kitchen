@@ -48,7 +48,8 @@ public class Area extends Base {
         return name;
     }
 
-    public void setName(String name) {
+    public Area setName(String name) {
         this.name = name;
+        return this;
     }
 }

@@ -65,6 +65,8 @@ GET         /house/list                controllers.HouseController.houseList
 
 GET         /house/add/generate        controllers.HouseController.add
 
+POST        /house/get                 controllers.HouseController.get
+
 POST        /house                     controllers.HouseController.addHouse
 
 POST        /house/query               controllers.HouseController.query

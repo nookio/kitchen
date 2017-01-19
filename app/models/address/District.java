@@ -39,8 +39,9 @@ public class District extends Base {
         return name;
     }
 
-    public void setName(String name) {
+    public District setName(String name) {
         this.name = name;
+        return this;
     }
 
     public Integer getAreaCode() {

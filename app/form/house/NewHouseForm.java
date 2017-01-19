@@ -69,9 +69,9 @@ public class NewHouseForm extends BaseForm{
      * 租售信息
      */
     //租售类型
-    private Integer rentBusinessType = 0;
+    private Integer rentBusinessType = 1;
     //租售状态
-    private Integer rentStatus = 0;
+    private Integer rentStatus = 1;
 
     public void pushRentInfo(House house){
         house.setRentBusinessType(this.rentBusinessType);
@@ -161,7 +161,7 @@ public class NewHouseForm extends BaseForm{
     //使用面积
     private String useAreas = "0";
     //展示面宽度
-    private Integer showLength = 0;
+    private String showLength = "0";
     //层高
     private String height = "0";
     //遮挡程度
@@ -230,29 +230,29 @@ public class NewHouseForm extends BaseForm{
      * 费用相关
      */
     //日租金 分为单位
-    private Long chummageDaily;
+    private Long chummageDaily = 0l;
     //月租金
-    private Long chummageMonth;
+    private Long chummageMonth = 0l;
     //年租金
-    private Long chummageYear;
+    private Long chummageYear = 0l;
     //租金递增
-    private Integer chummageIncrease;
+    private Integer chummageIncrease = 0;
     //租金递增规则
-    private String chummageIncreaseRule;
+    private String chummageIncreaseRule = "";
     //转让费
-    private Long transferCost;
+    private Long transferCost = 0l;
     //压几个月
-    private String pledgeMonth;
+    private String pledgeMonth = "0";
     //附几个月
-    private String payMonth;
+    private String payMonth = "0";
     //物业费
-    private Long propertyFee;
+    private Long propertyFee = 0l;
     //水费
-    private Long waterFee;
+    private Long waterFee = 0l;
     //电费
-    private Long elasFee;
+    private Long elasFee = 0l;
     //天然气费
-    private Long gasFee;
+    private Long gasFee = 0l;
 
     private void pushCharge(House house) {
         house.setChummageDaily(this.chummageDaily);
@@ -273,11 +273,11 @@ public class NewHouseForm extends BaseForm{
      * 租约相关
      */
     //下次交租日
-    private Long nextPayRentDate;
+    private Long nextPayRentDate = -1l;
     //最大可租年
-    private String maxRentYear;
+    private String maxRentYear = "0";
     //可以重复签约
-    private Integer repetition;
+    private Integer repetition = 0;
 
     public void pushRent(House house){
         house.setNextPayRentDate(new Date(this.nextPayRentDate));
@@ -289,13 +289,13 @@ public class NewHouseForm extends BaseForm{
      * 评价相关
      */
     //商圈登记
-    private Integer marchatLevel;
+    private Integer marchatLevel = 10;
     //店铺评级
-    private Integer houseLevel;
+    private Integer houseLevel = 10;
     //建议人均 kaishi
-    private Long perPersonMin;
+    private Long perPersonMin = 0l;
     //建议人均 jieshu
-    private Long perPersonMax;
+    private Long perPersonMax = 0l;
     //建议业态 todo
     private List<Integer> businesss;
     //优点
@@ -315,11 +315,11 @@ public class NewHouseForm extends BaseForm{
     /**
      * 来源
      */
-    private Integer houseSource;
+    private Integer houseSource = 8;
 
-    private String sourceName;
+    private String sourceName = "其他";
 
-    private String describtion;
+    private String describtion = "";
 
     public void pushSource(House house){
         house.setHouseSource(this.houseSource);
@@ -388,6 +388,9 @@ public class NewHouseForm extends BaseForm{
         pushCharge(house);
         pushRentInfo(house);
         pushBuildInfo(house);
+        pushRent(house);
+        pushEvelate(house);
+        pushSource(house);
         return house;
     }
 
@@ -654,11 +657,11 @@ public class NewHouseForm extends BaseForm{
         this.useAreas = useAreas;
     }
 
-    public Integer getShowLength() {
+    public String getShowLength() {
         return showLength;
     }
 
-    public void setShowLength(Integer showLength) {
+    public void setShowLength(String showLength) {
         this.showLength = showLength;
     }
 

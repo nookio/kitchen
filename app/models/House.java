@@ -31,10 +31,10 @@ public class House extends Base {
     /**
      *   租售信息
      */
-    @Column
-    private Integer rentBusinessType;  //出租业务类型
+    @Column(columnDefinition = "int(4) default 1")
+    private Integer rentBusinessType = 1;  //出租业务类型
 
-    @Column
+    @Column(columnDefinition = "int(4) default 1")
     private Integer rentStatus;  //租售状态
 
 
@@ -42,59 +42,59 @@ public class House extends Base {
      * 位置信息
      */
     //省
-    @Column
+    @Column(columnDefinition = "int(10) default 110000")
     private Integer provinceCode;
 
     //市
-    @Column
+    @Column(columnDefinition = "int(10) default 110100")
     private Integer cityCode;
 
     //县
-    @Column
+    @Column(columnDefinition = "int(10) default 110101")
     private Integer areaCode;
 
     //区域
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer districtCode;
 
     //地址
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     @Size(max = 500)
     private String address;
 
     //经度
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     private String longitude;
 
     //纬度
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     private String latitude;
 
     //地图url
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     private String mapUrl;
 
     //地图类型
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     private String mapUrlType;
 
     //全景url
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     private String wholeMapUrl;
 
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     private String hotMapUrl; //热力地图
 
     /**
      * 当前状态
      */
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer operateStatus; //经营业态 营业中/无业
 
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     private String businessName; //经营品牌
 
-    @Column
+    @Column(columnDefinition = "varchar(500) default ''")
     private String businessStatus; //当前业态(米粉/面条)
 
 
@@ -102,52 +102,52 @@ public class House extends Base {
      * 建筑信息
      */
     //商铺类型
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer houseType;
 
     //产权人类型
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer ownerType;
 
     //产权人
-    @Column
+    @Column(columnDefinition = "varchar(40) default ''")
     private String owner;
 
-    @Column
+    @Column(columnDefinition = "int(4) default 1")
     private Integer propertyRightType = 1;
 
-    @Column
+    @Column(columnDefinition = "varchar(100) default '1'")
     private String floor; //第几层
 
     @Column
     private String maxFloor; //一共几层
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long areas; //建筑面积
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long buildAreas; //建筑面积
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long useAreas; //建筑面积
 
     @Column
     private Long effien; //得房率
 
-    @Column
-    private Integer showLength; //展示面宽度
+    @Column(columnDefinition = "varchar(20) default '0'")
+    private String showLength; //展示面宽度
 
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long height;
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer rentType; //0:不整租, 1:整租
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long shade; //遮挡程度
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer decoration; //0无, 1有装修
 
     /**
@@ -159,55 +159,55 @@ public class House extends Base {
     @Column
     private Long shopSignSizeTwo;  //店招2
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer power; //是否有动力电
 
-    @Column
+    @Column(columnDefinition = "varchar(20) default '0'")
     private String capacitance; //电容量
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer capacityIncrease; //可以增容
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer upPipe; //上水管
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer downPipe; //下水管
 
-    @Column
+    @Column(columnDefinition = "varchar(20) default '0'")
     private String downPipeDiameter; //下水管直径
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer gas; //天然气
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer gasCylinders; //煤气罐
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer fire; //明火
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer duct; //排烟道
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Long ductRate; //排风量
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer blowOff; //排污管道
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer greaseTrap; //隔油池
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer oilFume; //油烟过滤器
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer selfCarPortSize; //自由停车位
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer aroundCarPortSize; //周边停车位
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer outWard; //是否有外摆区
 
 
@@ -220,40 +220,40 @@ public class House extends Base {
     /**
      * 费用相关
      */
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long chummageDaily; //每天租金
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long chummageMonth; //每月租金
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long chummageYear; //每年租金
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer chummageIncrease; //租金递增
 
-    @Column
+    @Column(columnDefinition = "varchar(20) default ''")
     private String chummageIncreaseRule; //租金递增规则
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long transferCost; //转让费
 
-    @Column
+    @Column(columnDefinition = "varchar(20) default ''")
     private String pledgeMonth; //压几个月
 
-    @Column
+    @Column(columnDefinition = "varchar(20) default ''")
     private String payMonth; //附几个月
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long propertyFee; //物业费
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long waterFee; //水费
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long gasFee; //天然气费
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long elasFee; //电费
 
     @Column
@@ -263,17 +263,17 @@ public class House extends Base {
     @Column
     private Date nextPayRentDate; //下次交租日
 
-    @Column
+    @Column(columnDefinition = "varchar(50) default ''")
     private String maxRentYear; //最大可租年
 
-    @Column
+    @Column(columnDefinition = "int(4) default 0")
     private Integer repetition; //可以重复签约
 
     //评价
-    @Column
+    @Column(columnDefinition = "int(4) default 10")
     private Integer marchatLevel; //评价登记
 
-    @Column
+    @Column(columnDefinition = "int(4) default 10")
     private Integer houseLevel; //店铺评级
 
     @Column
@@ -285,10 +285,10 @@ public class House extends Base {
     @Column
     private String proposed;
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long perPersonMin; //建议人均 kaishi
 
-    @Column
+    @Column(columnDefinition = "bigint(20) default 0")
     private Long perPersonMax; //建议人均 jieshu
 
 
@@ -302,16 +302,16 @@ public class House extends Base {
     @Column
     private String sourceName;
 
-    @Column
+    @Column(columnDefinition = "int(4) default 2")
     private Integer status;
 
-    @Column
+    @Column(columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @UpdatedTimestamp
-    private Date updated_date;
+    private Date updatedDate;
 
-    @Column
+    @Column(columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @CreatedTimestamp
-    private Date created_date;
+    private Date createdDate;
 
     @Column
     private Integer contactId;
@@ -373,7 +373,7 @@ public class House extends Base {
         this.maxFloor = null == area.getMaxFloor() ? "0" : area.getMaxFloor();
         this.areas = null == area.getAreas() ? 0 : area.getAreas();
         this.effien = null == area.getEffien() ? 0 : area.getEffien();
-        this.showLength = null == area.getShowLength() ? 0 : area.getShowLength();
+        this.showLength = null == area.getShowLength() ? "" : area.getShowLength();
         this.rentType = null == area.getRentType() ? 0 : area.getRentType();
         this.shade = null == area.getShade() ? 0 : area.getShade();
         this.decoration = null == area.getDecoration() ? 0 : area.getDecoration();
@@ -599,12 +599,8 @@ public class House extends Base {
         this.effien = effien;
     }
 
-    public Integer getShowLength() {
+    public String getShowLength() {
         return showLength;
-    }
-
-    public void setShowLength(Integer showLength) {
-        this.showLength = showLength;
     }
 
     public Integer getRentType() {
@@ -827,20 +823,20 @@ public class House extends Base {
         return sourceName;
     }
 
-    public Date getCreated_date() {
-        return created_date;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setCreated_date(Date created_date) {
-        this.created_date = created_date;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
-    public Date getUpdated_date() {
-        return updated_date;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setUpdated_date(Date updated_date) {
-        this.updated_date = updated_date;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Credential getCredential() {
@@ -1094,5 +1090,9 @@ public class House extends Base {
 
     public void setOperateStatus(Integer operateStatus) {
         this.operateStatus = operateStatus;
+    }
+
+    public void setShowLength(String showLength) {
+        this.showLength = showLength;
     }
 }

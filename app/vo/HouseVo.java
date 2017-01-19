@@ -6,10 +6,10 @@ import models.address.Area;
 import models.address.City;
 import models.address.District;
 import models.address.Province;
+import models.enums.ContactEnums;
 import models.enums.CredentialEnums;
 import models.enums.HouseEnums;
-
-import java.util.Map;
+import services.AddressService;
 
 /**
  * @Created_With kitchen
@@ -30,6 +30,13 @@ public class HouseVo {
 
     private String rentStatusName;
 
+    private HouseVo pushBussiness(){
+        this.rentBusinessTypeName = 0 == this.rentBusinessType ? "" : HouseEnums.bussinessMap.getOrDefault(rentBusinessType, "");
+        if (null != rentStatus && 1 == rentStatus) this.rentBusinessTypeName += "(整租)";
+        this.rentStatusName = null == this.rentStatus ? "" : HouseEnums.rentStatusMap.getOrDefault(rentStatus, "");
+        return this;
+    }
+
     private Integer provinceCode;
     private String provinceName;
 
@@ -49,6 +56,20 @@ public class HouseVo {
     private String address;
 
 
+    private Long areas; //建筑面积
+
+    private Long buildAreas; //建筑面积
+
+    private Long usedAreas; //建筑面积
+
+    private HouseVo pushAddress(){
+        this.provinceName = AddressService.PROVINCE_MAP.getOrDefault(provinceCode, new Province().setName("北京市")).getName();
+        this.cityName = AddressService.CITY_MAP.getOrDefault(cityCode, new City().setName("市辖区")).getName();
+        this.districtName =  AddressService.DISTRICT_MAP.getOrDefault(districtCode, new District().setName("")).getName();
+        this.areaName =  AddressService.AREA_MAP.getOrDefault(areaCode, new Area().setName("")).getName();
+        return this;
+    }
+
 
     //价格;
     private Long chummageDaily;
@@ -61,10 +82,21 @@ public class HouseVo {
 
     private String location;
 
+    //地图url
+    private String mapUrl = "";
+    //全景地图
+    private String wholeMapUrl = "";
+
+
     //房屋类型
     private Integer houseType;
 
     private String houseTypeName;
+
+    private HouseVo pushHouseTypename(){
+        this.houseTypeName = HouseEnums.houseTypeMap.getOrDefault(this.houseType, "其它");
+        return this;
+    }
 
     //品牌
     private String business; //经营业态
@@ -74,6 +106,18 @@ public class HouseVo {
     private String businessStatus; //当前业态(米粉/面条)
 
     private String contact;
+
+    /**
+     * 联系人
+     */
+    //姓名
+    private String contactName = "";
+    //联系人电话号码
+    private String contactMobile = "";
+    //联系人类型 默认是1
+    private Integer contactType = 1;
+
+    private String contactTypeName ="";
 
 
     //资质
@@ -93,6 +137,14 @@ public class HouseVo {
 
     private String invoiceName;
 
+    private HouseVo pushCredential(){
+        this.businessLicenceName =  CredentialEnums.businessLicenceMap.getOrDefault(this.businessLicence, "");
+        this.foodAndBeverageBusinessLicenseName =  CredentialEnums.foodLicenceMap.getOrDefault(this.foodAndBeverageBusinessLicense, "");
+        this.fireSafetyPermitionName = CredentialEnums.fireLicenceMap.getOrDefault(this.fireSafetyPermition, "");;
+        this.invoiceName = CredentialEnums.invoiceMap.getOrDefault(this.invoice, "");;
+        return this;
+    }
+
 
     //当前状态
 
@@ -100,28 +152,33 @@ public class HouseVo {
     //房屋类型
     private String owner;
     private Integer ownerType;
-
     private String ownerTypeName;
 
     private Integer propertyRightType;
 
     private String propertyRightTypeName;
 
-    private Long areas; //建筑面积
-
-    private Long buildAreas; //建筑面积
-
-    private Long usedAreas; //建筑面积
-
-    private Integer showLength; //展示面宽度
+    private String showLength; //展示面宽度
 
     private String floor; //第几层
+
+    private Integer decoration = 0; //0无, 1有装修
+
+    private String decorationName; //0无, 1有装修
+
+    private Long shade; //遮挡程度
+
+    private HouseVo pushInfo(){
+        this.ownerTypeName = HouseEnums.ownerTypeMap.getOrDefault(ownerType, "");
+        this.propertyRightTypeName = HouseEnums.propertyRightTypeMap.getOrDefault(propertyRightType, "");
+        this.decorationName = 0 != decoration && null != decoration ? "是" : "否";
+        return this;
+    }
+
 
     private Long height;
 
     private String maxFloor; //一共几层
-
-    private Long shade; //遮挡程度
 
     private Integer power; //是否有动力电
 
@@ -160,10 +217,6 @@ public class HouseVo {
     private Long shopSignSizeOne; //店招1
 
     private Long shopSignSizeTwo;  //店招2
-
-    private Integer decoration = 0; //0无, 1有装修
-
-    private String decorationName; //0无, 1有装修
 
     //费用相关
     private Integer chummageIncrease; //租金递增
@@ -225,16 +278,19 @@ public class HouseVo {
         this.code = house.getCode();
         this.rentBusinessType = house.getRentBusinessType();
         this.rentStatus = house.getRentStatus();
+        pushBussiness();
         this.provinceCode = house.getProvinceCode();
         this.cityCode = house.getCityCode();
         this.areaCode = house.getAreaCode();
         this.districtCode = house.getDistrictCode();
         this.address = house.getAddress();
-        setChummageDaily(house.getChummageDaily());
-        setChummageMonth(house.getChummageMonth());
-        setChummageYear(house.getChummageYear());
-        setTransferCost(house.getTransferCost());
+        pushAddress();
+        this.chummageDaily = house.getChummageDaily();
+        this.chummageMonth = house.getChummageMonth();
+        this.chummageYear = house.getChummageYear();
+        this.transferCost = house.getTransferCost();
         this.houseType = house.getHouseType();
+        pushHouseTypename();
         this.business = house.getBusiness();
         this.businessName = house.getBusinessName();
         this.businessStatus = house.getBusinessStatus();
@@ -252,6 +308,8 @@ public class HouseVo {
         this.floor = house.getFloor();
         this.height = house.getHeight();
         this.maxFloor = house.getMaxFloor();
+        this.decoration = house.getDecoration();
+        pushInfo();
         this.shade = house.getShade();
         this.power = house.getPower();
         this.capacityIncrease = house.getCapacityIncrease();
@@ -295,36 +353,20 @@ public class HouseVo {
         this.describtion = house.getDescribtion();
     }
 
-    public static HouseVo transformFromHouse(House house, Contact contact, Map<Integer, Province> provinces,
-                                             Map<Integer, City> citys,
-                                             Map<Integer, Area> areas, Map<Integer, District> districts) {
+    public static HouseVo transformFromHouse(House house, Contact contact) {
 
         HouseVo vo = new HouseVo(house);
-        vo.houseTypeName = null == house.getHouseType() ? "" : HouseEnums.houseTypeMap.getOrDefault(house.getHouseType(), "");
+
         vo.ownerTypeName = null == vo.ownerType ? "" : HouseEnums.ownerTypeMap.getOrDefault(vo.ownerType, "");
         vo.houseLevelName = null == house.getHouseLevel() ? "" : HouseEnums.houseLevelMap.getOrDefault(house.getHouseLevel(), "");
-        vo.rentBusinessTypeName = 0 == vo.rentBusinessType ? "" : HouseEnums.bussinessMap.getOrDefault(vo.rentBusinessType, "");
-        vo.rentStatusName = null == house.getRentStatus() ? "" : HouseEnums.rentStatusMap.getOrDefault(house.getRentStatus(), "");
-
-        vo.businessLicenceName = null == vo.businessLicence ? "" : CredentialEnums.businessLicenceMap.getOrDefault(vo.businessLicence, "");
-        vo.foodAndBeverageBusinessLicenseName = null == vo.foodAndBeverageBusinessLicense ? "" : CredentialEnums.foodLicenceMap.getOrDefault(vo.foodAndBeverageBusinessLicense, "");
-        vo.fireSafetyPermitionName = null == vo.fireSafetyPermition ? "" : CredentialEnums.fireLicenceMap.getOrDefault(vo.fireSafetyPermition, "");;
-        vo.invoiceName = null == vo.invoice ? "" : CredentialEnums.invoiceMap.getOrDefault(vo.invoice, "");;
-
         vo.repetitionName = 0 == vo.getRepetition() ? "否" : "是";
         vo.chummageIncreaseName = 1 == vo.getChummageIncrease() ?  "是" : "否";
-
-        vo.propertyRightTypeName = null == vo.propertyRightType ? "" : HouseEnums.propertyRightTypeMap.getOrDefault(vo.propertyRightType, "");
         vo.marchatLevelName = null == vo.marchatLevel ? "" : HouseEnums.houseLevelMap.getOrDefault(vo.marchatLevel, "");
         vo.houseSourceName = null == vo.houseSource ? "" : HouseEnums.sourceMap.getOrDefault(vo.sourceName, "");
-        vo.provinceName = null == vo.provinceCode ? "" : provinces.get(vo.getProvinceCode()).getName();
-        vo.cityName = null == vo.getCityCode() ? "" : citys.get(vo.getCityCode()).getName();
-        vo.districtName = null == vo.getDistrictCode() ? "" : districts.get(vo.getDistrictCode()).getName();
-        vo.areaName = null == vo.getAreaCode() ? "" : areas.get(vo.getAreaCode()).getName();
         vo.decorationName = 0 == vo.getDecoration() ?  "否" : "是";
         vo.houseSourceName = null == vo.getHouseSource() ? "" : HouseEnums.sourceMap.getOrDefault(vo.getHouseSource(), "");
         vo.setLocation(vo.provinceName, vo.cityName, vo.areaName, vo.districtName, vo.address);
-        vo.setContact(contact.getName(), contact.getType(), contact.getMobile());
+        vo.setContact(contact);
         return vo;
     }
 
@@ -332,10 +374,12 @@ public class HouseVo {
         this.location = provinceName + "-" + cityName + "-" +  areaName + "-" +  districtName + "-" +  address;
     }
 
-    public void setContact(String owner, Integer ownerType, String mobile){
-        this.contact = owner + " " + (
-                null == ownerType ? "" : HouseEnums.sourceMap.getOrDefault(ownerType, ""))
-                + "  " + mobile;
+    public void setContact(Contact contact){
+        if (null == contact) return;
+        this.contactMobile = contact.getMobile();
+        this.contactName = contact.getName();
+        this.contactType = contact.getType();
+        this.contactTypeName = ContactEnums.contactMap.getOrDefault(this.contactType, "业主");
     }
 
     public void setChummageMonth(Long chummageMonth) {
@@ -586,11 +630,11 @@ public class HouseVo {
         this.usedAreas = usedAreas;
     }
 
-    public Integer getShowLength() {
+    public String getShowLength() {
         return showLength;
     }
 
-    public void setShowLength(Integer showLength) {
+    public void setShowLength(String showLength) {
         this.showLength = showLength;
     }
 

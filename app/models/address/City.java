@@ -5,6 +5,7 @@ import models.Base;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.util.Map;
 
 /**
  * @Created_With kitchen
@@ -39,8 +40,9 @@ public class City extends Base {
         return name;
     }
 
-    public void setName(String name) {
+    public City setName(String name) {
         this.name = name;
+        return this;
     }
 
     public Integer getProvinceCode() {

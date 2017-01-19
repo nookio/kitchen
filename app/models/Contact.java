@@ -21,20 +21,20 @@ public class Contact extends Base {
 
     public final static Finder<Integer, Contact> finder = new Finder<Integer, Contact>(Contact.class);
 
-    @Column
+    @Column(columnDefinition = "varchar(50) default ''")
     private String name; //姓名
 
-    @Column
+    @Column(columnDefinition = "varchar(50) default ''")
     private String mobile; //电话
 
-    @Column
+    @Column(columnDefinition = "int(4) default 1")
     private Integer type = ContactEnums.OWNER_CONTACT; //默认是业主
 
-    @Column
+    @Column(columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @UpdatedTimestamp
     private Date updatedDate;
 
-    @Column
+    @Column(columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @CreatedTimestamp
     private Date createdDate;
 
